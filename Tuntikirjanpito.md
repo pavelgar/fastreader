@@ -1,5 +1,4 @@
 ### Tuntikirjanpito
    Päivä   | Tunnit | Kuvaus
 ---------- | ------ | ------
-01.01.2016 |   2h   | Aiheen suunnittelua ja repon luonti
-...        | ...    | ...
+20.01.2017 |   2h   | Aiheen suunnittelua ja repon luonti
