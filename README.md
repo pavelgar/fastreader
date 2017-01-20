@@ -2,7 +2,7 @@
 
 ### Aihe
 
-**Nopealukuohjelma**
+#### Nopealukuohjelma
 
 Ohjelman tarkoituksena on auttaa käyttäjää lukemaan syöttämä teksti tavallista nopeammin näyttämällä teksti sana kerralla jopa 500 sanaa/min nopeudella. Tämä auttaa sekä keskittymään paremmin tekstin sisältöön, että tietenkin nopeuttaa tekstin läpilukua. 
 
