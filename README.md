@@ -26,3 +26,5 @@ Lukija
   * Jos tekstinluku on käynnissa, niin se pysähtyy
 * Tekstinluvun lopettaminen
 * Tilastojen tarkastelu
+
+### Mukavia lukuhetkiä!
