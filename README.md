@@ -1,4 +1,4 @@
-# FastReader
+# Fastreader
 
 ### Aihe
 
