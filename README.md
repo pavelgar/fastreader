@@ -1,6 +1,6 @@
 # FastReader
 
-### Aihe
+## Aihe
 
 **Nopealukuohjelma.** 
 
@@ -10,7 +10,7 @@ Ohjelma tarjoaa huippunopeuden valitsimen, vaikeiden sanojen merkitsemisen, pika
 
 Suomen kielen pitkien yhdyssanojen ja lukuisten taivutusmuotojen takia ohjelma voi älykkäästi pitää pidempää sanaa pidemmän aikaa näkyvillä, mutta teoriassa tätä ei tarvitsisi tehdä, koska luettaessa kiinnitämme huomion sanan alku- ja loppukirjameen, minkä avulla päättelemme itse sanan.
 
-### Käyttäjät
+## Käyttäjät
 
 Lukija
 
