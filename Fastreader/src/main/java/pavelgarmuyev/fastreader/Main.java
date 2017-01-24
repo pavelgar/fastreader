@@ -5,8 +5,6 @@
  */
 package pavelgarmuyev.fastreader;
 
-import java.util.Scanner;
-
 /**
  *
  * @author pavelgarmuyev
@@ -14,12 +12,6 @@ import java.util.Scanner;
 public class Main {
     
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Copy and paste text below");
-        String input = scanner.nextLine();
         
-        for (String s : input.split(" ")) {
-            System.out.println(s);
-        }
     }
 }
