@@ -2,6 +2,8 @@
 package pavelgarmuyev.fastreader.applogic;
 
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -18,32 +20,57 @@ public class UserInterface {
     
     public void init() {
         while (true) {
-            System.out.println("Copy plain text or type .exit to exit");
-            System.out.print("> ");
-            String input = scanner.nextLine();
-            
+            String input = askText();
+
             if (input.equals(".exit")) {
                 System.out.println("Goodbye!");
                 break;
             }
-            System.out.print("Choose speed (100-500, increments of 50): ");
-            int speed = 1;
-            
-            while (true) {
-                try {
-                    speed = Integer.parseInt(scanner.nextLine());
-                    if (speed % 50 == 0) {
-                        break;
-                    }
-                    System.out.print("Only increments of 50: ");
-                } catch (Exception e) {
-                    System.out.print("Only numbers allowed (100-500): ");
-                }
-            }
+            int speed = askSpeed();
             
             WordSequencer ws = new WordSequencer(input, speed);
-            ws.readWords();
             
+            speed = ws.getSpeed();
+            for (String s : ws.getWords()) {
+                try {
+                    Thread.sleep(60 / speed * 1000);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(WordSequencer.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                System.out.println(s);
+            }
         }
+    }
+    
+    public String askText() {
+        System.out.println("Copy plain text or type .exit to exit");
+        System.out.print("> ");
+        String input = scanner.nextLine();
+        
+        while (input.isEmpty()) {
+            System.out.println("Empty input not valid. Try again.");
+            System.out.print("> ");
+            input = scanner.nextLine();
+        }
+        return input;
+    }
+    
+    public int askSpeed() {
+        System.out.println("Choose speed: ");
+        System.out.println("> ");
+        int speed = -1;
+        while (speed < 0) {
+            try {
+                speed = Integer.parseInt(scanner.nextLine());
+                if (speed < 0) {
+                    System.out.println("Invalid speed, try again.");
+                    System.out.print("> ");
+                }
+            } catch (Exception e) {
+                System.out.println("Invalid speed, try again.");
+                System.out.print("> ");
+            }
+        }
+        return speed;
     }
 }
