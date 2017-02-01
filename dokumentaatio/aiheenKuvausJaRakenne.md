@@ -27,4 +27,7 @@ Lukija
 * Tekstinluvun lopettaminen
 * Tilastojen tarkastelu
 
+### Luokkakaavio
+![Luokkakaavio](luokkakaavio.png)
+
 ### Mukavia lukuhetkiä!
