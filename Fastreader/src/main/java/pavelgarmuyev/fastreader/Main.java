@@ -1,20 +1,14 @@
 
 package pavelgarmuyev.fastreader;
 
-import java.util.Scanner;
-import pavelgarmuyev.fastreader.applogic.UserInterface;
-
-/**
- *
- * @author pavelgarmuyev
- */
+import pavelgarmuyev.fastreader.gui.*;
+import javax.swing.SwingUtilities;
 
 public class Main {
     
     public static void main(String[] args) {
-        
-        Scanner scanner = new Scanner(System.in);
-        UserInterface ui = new UserInterface(scanner);
-        ui.init();
+
+        UserInterface ui = new UserInterface();
+        SwingUtilities.invokeLater(ui);
     }
 }

@@ -1,13 +1,10 @@
 
 package pavelgarmuyev.fastreader.applogic;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-/**
- *
- * @author pavelgarmuyev
- */
 public class WordSequencer {
     
     private List<String> wordList;
@@ -15,17 +12,8 @@ public class WordSequencer {
     
     public WordSequencer(String text, int speed) {
         wordList = new LinkedList<>();
-        
-        for (String s : text.split(" ")) {
-            wordList.add(s);
-        }
-        if (speed < 100) {
-            this.speed = 100;
-        } else if (speed > 500) {
-            this.speed = 500;
-        } else {
-            this.speed = speed;
-        }
+
+        Collections.addAll(wordList, text.split(" "));
     }
     
     public void setSpeed(int speed) {
