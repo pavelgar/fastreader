@@ -7,4 +7,4 @@
 26.01.2017 |  0,5h  | Sovelluslogiikan pohtimista
 27.01.2017 |   5h   | Sovelluslogiikan toteutusta ja testien tekemistä
 01.02.2017 |   3h   | GUI:n tekemistä
-03.01.2017 |   5h   | Sovelluslogiikkaa ja lisää GUI:ta
+03.02.2017 |   5h   | Sovelluslogiikkaa ja lisää GUI:ta
