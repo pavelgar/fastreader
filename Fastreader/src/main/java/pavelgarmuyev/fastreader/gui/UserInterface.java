@@ -1,13 +1,19 @@
 package pavelgarmuyev.fastreader.gui;
 
+import pavelgarmuyev.fastreader.applogic.*;
+
 import javax.swing.*;
 import java.awt.*;
+import java.util.LinkedList;
 
 public class UserInterface implements Runnable {
 
     private JFrame frame;
+    private Commands commands;
 
-    public UserInterface() {}
+    public UserInterface(Commands commands) {
+        this.commands = commands;
+    }
 
     @Override
     public void run() {
@@ -30,13 +36,27 @@ public class UserInterface implements Runnable {
     }
 
     private void createComponents(Container container) {
-        BoxLayout layout = new BoxLayout(container, BoxLayout.Y_AXIS);
-        container.setLayout(layout);
-        GridBagConstraints c = new GridBagConstraints();
+        container.setLayout(new BoxLayout(container, BoxLayout.Y_AXIS));
 
-        // JLabel wordCount = new JLabel("Word Count: 1001");
-        // wordCount.setAlignmentX(0.0f);
-        // container.add(wordCount);
+        container.add(createBigWord());
+        container.add(createControls());
+        container.add(Box.createVerticalGlue());
+
+        container.add(Box.createVerticalGlue());
+        container.add(createProgressBar());
+    }
+
+    private JProgressBar createProgressBar() {
+        JProgressBar progressBar = new JProgressBar(0, commands.getTotalWords());
+        progressBar.setValue(0);
+        progressBar.setStringPainted(true);
+        progressBar.setAlignmentX(0.9f);
+
+        return progressBar;
+    }
+
+    private JPanel createBigWord() {
+
         JPanel bigWordPanel = new JPanel();
         bigWordPanel.setLayout(new BoxLayout(bigWordPanel, BoxLayout.X_AXIS));
 
@@ -50,36 +70,40 @@ public class UserInterface implements Runnable {
         bigWord.setOpaque(true);
 
         bigWordPanel.add(bigWord);
+        return bigWordPanel;
+    }
 
-        container.add(bigWordPanel);
+    private JPanel createControls() {
 
         JPanel controlsPanel = new JPanel();
         controlsPanel.setLayout(new BoxLayout(controlsPanel, BoxLayout.X_AXIS));
         controlsPanel.setBackground(Color.WHITE);
-        controlsPanel.setOpaque(true);
 
-        ImageIcon rewindImg = new ImageIcon("rewind_button2.png");
-        JButton backwardsButton = new JButton(rewindImg);
-        backwardsButton.setOpaque(false);
-        backwardsButton.setContentAreaFilled(false);
-        backwardsButton.setBorderPainted(false);
-        controlsPanel.add(backwardsButton);
+        LinkedList<JButton> buttonsList = new LinkedList<>();
 
-        container.add(controlsPanel);
+        JButton rewindButton = new JButton(new ImageIcon("rewind_button.png"));
+        rewindButton.addActionListener(new RewindActionListener(commands));
+        buttonsList.add(rewindButton);
 
-        container.add(Box.createVerticalGlue());
+        JButton prevButton = new JButton(new ImageIcon("prev_sentence_button.png"));
+        prevButton.addActionListener(new BackwardsActionListener(commands));
+        buttonsList.add(prevButton);
 
-        //JLabel speed = new JLabel("Speed: 500 wpm");
-        //speed.setAlignmentX(0.0f);
-        //container.add(speed);
+        JButton playButton = new JButton(new ImageIcon("play_button.png"));
+        playButton.addActionListener(new PlayActionListener());
+        buttonsList.add(playButton);
 
-        JProgressBar progressBar = new JProgressBar(0, 100);
-        progressBar.setValue(50);
-        progressBar.setStringPainted(true);
-        progressBar.setAlignmentX(0.9f);
+        JButton nextButton = new JButton(new ImageIcon("next_sentence_button.png"));
+        nextButton.addActionListener(new ForwardsActionListener(commands));
+        buttonsList.add(nextButton);
 
-        container.add(Box.createVerticalGlue());
-        container.add(progressBar);
+        for (JButton jb : buttonsList) {
+            jb.setOpaque(false);
+            jb.setContentAreaFilled(false);
+            jb.setBorderPainted(false);
+            controlsPanel.add(jb);
+        }
+        return controlsPanel;
     }
 
     private JMenuBar createMenuBar() {

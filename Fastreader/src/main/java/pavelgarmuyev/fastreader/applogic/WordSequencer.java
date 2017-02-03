@@ -1,24 +1,45 @@
 
 package pavelgarmuyev.fastreader.applogic;
 
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 public class WordSequencer {
     
     private List<String> wordList;
-    private int speed;
+    private List<Integer> dotList;
+    private int speed, pos;
     
-    public WordSequencer(String text, int speed) {
-        wordList = new LinkedList<>();
+    public WordSequencer(String text) {
+        wordList = new ArrayList<>();
+        dotList = new LinkedList<>();
+        int index = 0;
 
-        Collections.addAll(wordList, text.split(" "));
+        for (String s : text.split(" ")) {
+            wordList.add(s);
+            if (s.charAt(s.length() - 1) == '.') {
+                dotList.add(index);
+            }
+            index++;
+        }
+        speed = 100;
+        pos = 0;
     }
 
-    public WordSequencer(List<String> wordList, int speed) {
+    public WordSequencer(List<String> wordList) {
         this.wordList = wordList;
-        this.speed = speed;
+        dotList = new LinkedList<>();
+        int index = 0;
+
+        for (String s : wordList) {
+            if (s.charAt(s.length() - 1) == '.') {
+                dotList.add(index);
+            }
+            index++;
+        }
+        speed = 100;
+        pos = 0;
     }
     
     public void setSpeed(int speed) {
@@ -31,14 +52,35 @@ public class WordSequencer {
         return speed;
     }
     
-    public void outputWords() {
-
-        for (String s : wordList) {
-            System.out.println(s);
+    public String nextWord() {
+        if (pos + 1 >= wordList.size()) {
+            return null;
         }
+        String s = wordList.get(pos);
+        pos++;
+
+        return s;
     }
 
     public List<String> getWords() {
         return wordList;
+    }
+
+    public int getPos() {
+        return pos;
+    }
+
+    public void setPos(int pos) {
+        if (pos >= 0) {
+            this.pos = pos;
+        }
+    }
+
+    public List<Integer> getdotList() {
+        return dotList;
+    }
+
+    public int getTotalWords() {
+        return wordList.size();
     }
 }

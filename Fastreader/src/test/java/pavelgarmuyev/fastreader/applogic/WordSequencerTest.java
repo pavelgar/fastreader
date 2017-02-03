@@ -41,31 +41,31 @@ public class WordSequencerTest {
     
     @Test
     public void konstruktoriListaaSanat() {
-        WordSequencer ws = new WordSequencer("Get thiS! , .", 100);
+        WordSequencer ws = new WordSequencer("Get thiS! , .");
         assertEquals(Arrays.asList("Get","thiS!",",","."), ws.getWords());
     }
     
     @Test
     public void konstruktoriNostaaNopeuden() {
-        WordSequencer ws = new WordSequencer("Get thiS! , .", 50);
+        WordSequencer ws = new WordSequencer("Get thiS! , .");
         assertEquals(100, ws.getSpeed());
     }
     
     @Test
     public void konstruktoriLaskeeNopeuden() {
-        WordSequencer ws = new WordSequencer("Get thiS! , .", 550);
+        WordSequencer ws = new WordSequencer("Get thiS! , .");
         assertEquals(500, ws.getSpeed());
     }
     
     @Test
     public void konstruktoriEiMuutaValidiaNopeutta() {
-        WordSequencer ws = new WordSequencer("Get thiS! , .", 250);
+        WordSequencer ws = new WordSequencer("Get thiS! , .");
         assertEquals(250, ws.getSpeed());
     }
     
     @Test
     public void setSpeedAsettaaNopeuden() {
-        WordSequencer ws = new WordSequencer("Get thiS! , .", 100);
+        WordSequencer ws = new WordSequencer("Get thiS! , .");
         ws.setSpeed(300);
         assertEquals(300, ws.getSpeed());
     }
