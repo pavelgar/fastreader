@@ -2,6 +2,8 @@
 package pavelgarmuyev.fastreader.applogic;
 
 import java.util.Arrays;
+import java.util.List;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import static org.junit.Assert.*;
@@ -9,10 +11,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-/**
- *
- * @author pavelgarmuyev
- */
 public class WordSequencerTest {
 
     public WordSequencerTest() {
@@ -44,29 +42,45 @@ public class WordSequencerTest {
         WordSequencer ws = new WordSequencer("Get thiS! , .");
         assertEquals(Arrays.asList("Get","thiS!",",","."), ws.getWords());
     }
-    
+
     @Test
-    public void konstruktoriNostaaNopeuden() {
-        WordSequencer ws = new WordSequencer("Get thiS! , .");
-        assertEquals(100, ws.getSpeed());
+    public void konstruktoriListaaSanat2() {
+        List<String> list = Arrays.asList("Get","thiS!",",",".");
+        WordSequencer ws = new WordSequencer(list);
+        assertEquals(Arrays.asList("Get","thiS!",",","."), ws.getWords());
     }
-    
+
     @Test
-    public void konstruktoriLaskeeNopeuden() {
-        WordSequencer ws = new WordSequencer("Get thiS! , .");
-        assertEquals(500, ws.getSpeed());
+    public void konstruktoriListaaLopetusmerkkienPaikat() {
+        WordSequencer ws = new WordSequencer("Get. thiS! , .");
+        assertEquals(Arrays.asList(0, 1, 3), ws.getdotList());
     }
-    
+
     @Test
-    public void konstruktoriEiMuutaValidiaNopeutta() {
-        WordSequencer ws = new WordSequencer("Get thiS! , .");
-        assertEquals(250, ws.getSpeed());
+    public void konstruktoriListaaLopetusmerkkienPaikat2() {
+        List<String> list = Arrays.asList("Get.","thiS!",",",".");
+        WordSequencer ws = new WordSequencer(list);
+        assertEquals(Arrays.asList(0, 1, 3), ws.getdotList());
     }
-    
+
     @Test
-    public void setSpeedAsettaaNopeuden() {
+    public void nextWordAntaaSeuraavanSanan() {
         WordSequencer ws = new WordSequencer("Get thiS! , .");
-        ws.setSpeed(300);
-        assertEquals(300, ws.getSpeed());
+        assertEquals("Get", ws.nextWord());
+    }
+
+    @Test
+    public void nextWordPalauttaaNullKunSanatLoppu() {
+        WordSequencer ws = new WordSequencer("Get thiS!");
+        ws.nextWord();
+        ws.nextWord();
+        assertEquals(null, ws.nextWord());
+    }
+
+    @Test
+    public void setPosEiAsetaNegatiivikseksi() {
+        WordSequencer ws = new WordSequencer("Get thiS!");
+        ws.setPos(-1);
+        assertEquals(0, ws.getPos());
     }
 }

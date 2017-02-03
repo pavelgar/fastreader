@@ -18,7 +18,8 @@ public class WordSequencer {
 
         for (String s : text.split(" ")) {
             wordList.add(s);
-            if (s.charAt(s.length() - 1) == '.') {
+            char c = s.charAt(s.length() - 1);
+            if (c == '.' || c == '?' || c == '!') {
                 dotList.add(index);
             }
             index++;
@@ -33,7 +34,8 @@ public class WordSequencer {
         int index = 0;
 
         for (String s : wordList) {
-            if (s.charAt(s.length() - 1) == '.') {
+            char c = s.charAt(s.length() - 1);
+            if (c == '.' || c == '?' || c == '!') {
                 dotList.add(index);
             }
             index++;

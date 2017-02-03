@@ -22,7 +22,7 @@ public class Commands {
 
         for (int i = dotList.size() - 1; i >= 0; i--) {
             if (pos >= dotList.get(i)) {
-                ws.setPos(dotList.get(i) + 1);
+                ws.setPos(dotList.get(i + 1) + 1);
             }
         }
     }

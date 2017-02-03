@@ -7,7 +7,7 @@ public class ForwardsActionListener implements ActionListener {
 
     private Commands commands;
 
-    public ForwardsActionListener (Commands commands) {
+    public ForwardsActionListener(Commands commands) {
         this.commands = commands;
     }
 
