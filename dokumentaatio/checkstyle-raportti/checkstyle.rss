@@ -25,7 +25,7 @@ under the License.
     <language>en-us</language>
     <copyright>&#169;2017</copyright>
     <item>
-      <title>File: 8,
+      <title>File: 7,
              Errors: 0,
              Warnings: 0,
              Infos: 0
@@ -60,20 +60,6 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#pavelgarmuyev.fastreader.applogic.BackwardsActionListener.java">pavelgarmuyev/fastreader/applogic/BackwardsActionListener.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="${project.url}/checkstyle.html#pavelgarmuyev.fastreader.gui.UserInterface.java">pavelgarmuyev/fastreader/gui/UserInterface.java</a>
                 </td>
                 <td>
@@ -88,7 +74,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#pavelgarmuyev.fastreader.applogic.RewindActionListener.java">pavelgarmuyev/fastreader/applogic/RewindActionListener.java</a>
+                  <a href="${project.url}/checkstyle.html#pavelgarmuyev.fastreader.gui.RewindActionListener.java">pavelgarmuyev/fastreader/gui/RewindActionListener.java</a>
                 </td>
                 <td>
                   0
@@ -102,7 +88,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#pavelgarmuyev.fastreader.applogic.ForwardsActionListener.java">pavelgarmuyev/fastreader/applogic/ForwardsActionListener.java</a>
+                  <a href="${project.url}/checkstyle.html#pavelgarmuyev.fastreader.gui.BackwardsActionListener.java">pavelgarmuyev/fastreader/gui/BackwardsActionListener.java</a>
                 </td>
                 <td>
                   0
@@ -116,7 +102,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#pavelgarmuyev.fastreader.applogic.PlayActionListener.java">pavelgarmuyev/fastreader/applogic/PlayActionListener.java</a>
+                  <a href="${project.url}/checkstyle.html#pavelgarmuyev.fastreader.gui.ForwardsActionListener.java">pavelgarmuyev/fastreader/gui/ForwardsActionListener.java</a>
                 </td>
                 <td>
                   0
@@ -144,7 +130,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#pavelgarmuyev.fastreader.applogic.Commands.java">pavelgarmuyev/fastreader/applogic/Commands.java</a>
+                  <a href="${project.url}/checkstyle.html#pavelgarmuyev.fastreader.gui.PlayActionListener.java">pavelgarmuyev/fastreader/gui/PlayActionListener.java</a>
                 </td>
                 <td>
                   0
