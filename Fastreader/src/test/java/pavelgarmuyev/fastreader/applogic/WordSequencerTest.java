@@ -36,32 +36,6 @@ public class WordSequencerTest {
     public void tearDown() {
         
     }
-    
-    @Test
-    public void konstruktoriListaaSanat() {
-        WordSequencer ws = new WordSequencer("Get thiS! , .");
-        assertEquals(Arrays.asList("Get","thiS!",",","."), ws.getWords());
-    }
-
-    @Test
-    public void konstruktoriListaaSanat2() {
-        List<String> list = Arrays.asList("Get","thiS!",",",".");
-        WordSequencer ws = new WordSequencer(list);
-        assertEquals(Arrays.asList("Get","thiS!",",","."), ws.getWords());
-    }
-
-    @Test
-    public void konstruktoriListaaLopetusmerkkienPaikat() {
-        WordSequencer ws = new WordSequencer("Get. thiS! , .");
-        assertEquals(Arrays.asList(0, 1, 3), ws.getdotList());
-    }
-
-    @Test
-    public void konstruktoriListaaLopetusmerkkienPaikat2() {
-        List<String> list = Arrays.asList("Get.","thiS!",",",".");
-        WordSequencer ws = new WordSequencer(list);
-        assertEquals(Arrays.asList(0, 1, 3), ws.getdotList());
-    }
 
     @Test
     public void nextWordAntaaSeuraavanSanan() {
@@ -75,12 +49,5 @@ public class WordSequencerTest {
         ws.nextWord();
         ws.nextWord();
         assertEquals(null, ws.nextWord());
-    }
-
-    @Test
-    public void setPosEiAsetaNegatiivikseksi() {
-        WordSequencer ws = new WordSequencer("Get thiS!");
-        ws.setPos(-1);
-        assertEquals(0, ws.getPos());
     }
 }

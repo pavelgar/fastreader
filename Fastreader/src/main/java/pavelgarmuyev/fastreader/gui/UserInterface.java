@@ -81,19 +81,19 @@ public class UserInterface implements Runnable {
 
         LinkedList<JButton> buttonsList = new LinkedList<>();
 
-        JButton rewindButton = new JButton(new ImageIcon("rewind_button.png"));
+        JButton rewindButton = new JButton(new ImageIcon("assets/rewind_button.png"));
         rewindButton.addActionListener(new RewindActionListener(commands));
         buttonsList.add(rewindButton);
 
-        JButton prevButton = new JButton(new ImageIcon("prev_sentence_button.png"));
+        JButton prevButton = new JButton(new ImageIcon("assets/prev_sentence_button.png"));
         prevButton.addActionListener(new BackwardsActionListener(commands));
         buttonsList.add(prevButton);
 
-        JButton playButton = new JButton(new ImageIcon("play_button.png"));
+        JButton playButton = new JButton(new ImageIcon("assets/play_button.png"));
         playButton.addActionListener(new PlayActionListener());
         buttonsList.add(playButton);
 
-        JButton nextButton = new JButton(new ImageIcon("next_sentence_button.png"));
+        JButton nextButton = new JButton(new ImageIcon("assets/next_sentence_button.png"));
         nextButton.addActionListener(new ForwardsActionListener(commands));
         buttonsList.add(nextButton);
 

@@ -8,7 +8,6 @@ import javax.swing.SwingUtilities;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -18,27 +17,38 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Input path to file");
-        System.out.print("> ");
-        // String filePath = scanner.nextLine();
         String filePath = "test.txt";
-
         Scanner fileScanner = null;
+
         try {
             fileScanner = new Scanner(new File(filePath));
+
         } catch (FileNotFoundException e) {
             System.out.println("File not found");
         }
 
-        List<String> wordList = new LinkedList<>();
+        List<String> list = new ArrayList<>();
         while (fileScanner.hasNext()) {
-            String s = fileScanner.next();
-            wordList.add(s);
-            System.out.println(s);
+            list.add(fileScanner.next());
         }
-        WordSequencer ws = new WordSequencer(wordList);
+
+        WordSequencer ws = new WordSequencer(list);
         Commands commands = new Commands(ws);
         UserInterface ui = new UserInterface(commands);
+
         SwingUtilities.invokeLater(ui);
+
+        while (true) {
+            System.out.print("> ");
+            String input = scanner.nextLine();
+
+            if (input.equals("exit")) {
+                break;
+            }
+
+            if (input.isEmpty()) {
+                ws.nextWord();
+            }
+        }
     }
 }

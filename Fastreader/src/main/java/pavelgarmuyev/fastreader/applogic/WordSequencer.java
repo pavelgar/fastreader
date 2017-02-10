@@ -1,47 +1,17 @@
 
 package pavelgarmuyev.fastreader.applogic;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
+import java.util.Scanner;
 
 public class WordSequencer {
-    
-    private List<String> wordList;
-    private List<Integer> dotList;
-    private int speed, pos;
-    
-    public WordSequencer(String text) {
-        wordList = new ArrayList<>();
-        dotList = new LinkedList<>();
-        int index = 0;
+    private List<String> list;
+    private int speed, index;
 
-        for (String s : text.split(" ")) {
-            wordList.add(s);
-            char c = s.charAt(s.length() - 1);
-            if (c == '.' || c == '?' || c == '!') {
-                dotList.add(index);
-            }
-            index++;
-        }
+    public WordSequencer(List<String> list) {
+        this.list = list;
+        index = -1;
         speed = 100;
-        pos = 0;
-    }
-
-    public WordSequencer(List<String> wordList) {
-        this.wordList = wordList;
-        dotList = new LinkedList<>();
-        int index = 0;
-
-        for (String s : wordList) {
-            char c = s.charAt(s.length() - 1);
-            if (c == '.' || c == '?' || c == '!') {
-                dotList.add(index);
-            }
-            index++;
-        }
-        speed = 100;
-        pos = 0;
     }
     
     public void setSpeed(int speed) {
@@ -55,34 +25,46 @@ public class WordSequencer {
     }
     
     public String nextWord() {
-        if (pos + 1 >= wordList.size()) {
-            return null;
+        if (list.isEmpty() || index >= list.size()) {
+            return "";
         }
-        String s = wordList.get(pos);
-        pos++;
 
-        return s;
+        index++;
+        return list.get(index);
     }
 
-    public List<String> getWords() {
-        return wordList;
-    }
-
-    public int getPos() {
-        return pos;
-    }
-
-    public void setPos(int pos) {
-        if (pos >= 0) {
-            this.pos = pos;
+    public String prevWord() {
+        if (list.isEmpty()) {
+            return "";
         }
+
+        if (index <= 0) {
+            return list.get(0);
+        }
+
+        index--;
+        return list.get(index);
     }
 
-    public List<Integer> getdotList() {
-        return dotList;
+    public String nextSentenceBeginning() {
+        String word = list.get(index);
+        char c = word.charAt(word.length() - 1);
+        
+        while (c != '.' && c != '!' && c != '?') {
+            word = nextWord();
+            c = word.charAt(word.length() - 1);
+        }
+        return nextWord();
     }
 
-    public int getTotalWords() {
-        return wordList.size();
+    public String currentSentenceBeginning() {
+        String word = prevWord();
+        char c = word.charAt(word.length() - 1);
+
+        while (c != '.' && c != '!' && c != '?') {
+            word = prevWord();
+            c = word.charAt(word.length() - 1);
+        }
+        return nextWord();
     }
 }

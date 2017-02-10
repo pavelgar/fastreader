@@ -1,4 +1,6 @@
-package pavelgarmuyev.fastreader.applogic;
+package pavelgarmuyev.fastreader.gui;
+
+import pavelgarmuyev.fastreader.applogic.Commands;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
