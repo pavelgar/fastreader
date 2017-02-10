@@ -4,17 +4,19 @@ import pavelgarmuyev.fastreader.applogic.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.LinkedList;
 
 public class UserInterface implements Runnable {
 
     private JFrame frame;
-    private Commands commands;
+    private WordSequencer wordSequencer;
 
-    public UserInterface(Commands commands) {
-        this.commands = commands;
+    public UserInterface(WordSequencer wordSequencer) {
+        this.wordSequencer = wordSequencer;
     }
 
+    /**
+     * Aloittaa uuden JFramen luonnin.
+     */
     @Override
     public void run() {
         frame = new JFrame("FastReader");
@@ -47,7 +49,7 @@ public class UserInterface implements Runnable {
     }
 
     private JProgressBar createProgressBar() {
-        JProgressBar progressBar = new JProgressBar(0, commands.getTotalWords());
+        JProgressBar progressBar = new JProgressBar(0, wordSequencer.totalWords());
         progressBar.setValue(0);
         progressBar.setStringPainted(true);
         progressBar.setAlignmentX(0.9f);
@@ -79,25 +81,25 @@ public class UserInterface implements Runnable {
         controlsPanel.setLayout(new BoxLayout(controlsPanel, BoxLayout.X_AXIS));
         controlsPanel.setBackground(Color.WHITE);
 
-        LinkedList<JButton> buttonsList = new LinkedList<>();
+        JButton[] buttons = new JButton[4];
 
         JButton rewindButton = new JButton(new ImageIcon("assets/rewind_button.png"));
-        rewindButton.addActionListener(new RewindActionListener(commands));
-        buttonsList.add(rewindButton);
+        rewindButton.addActionListener(new RewindActionListener(wordSequencer));
+        buttons[0] = rewindButton;
 
         JButton prevButton = new JButton(new ImageIcon("assets/prev_sentence_button.png"));
-        prevButton.addActionListener(new BackwardsActionListener(commands));
-        buttonsList.add(prevButton);
+        prevButton.addActionListener(new BackwardsActionListener(wordSequencer));
+        buttons[1] = prevButton;
 
         JButton playButton = new JButton(new ImageIcon("assets/play_button.png"));
-        playButton.addActionListener(new PlayActionListener());
-        buttonsList.add(playButton);
+        playButton.addActionListener(new PlayActionListener(wordSequencer));
+        buttons[2] = playButton;
 
         JButton nextButton = new JButton(new ImageIcon("assets/next_sentence_button.png"));
-        nextButton.addActionListener(new ForwardsActionListener(commands));
-        buttonsList.add(nextButton);
+        nextButton.addActionListener(new ForwardsActionListener(wordSequencer));
+        buttons[3] = nextButton;
 
-        for (JButton jb : buttonsList) {
+        for (JButton jb : buttons) {
             jb.setOpaque(false);
             jb.setContentAreaFilled(false);
             jb.setBorderPainted(false);

@@ -1,7 +1,6 @@
 
 package pavelgarmuyev.fastreader;
 
-import pavelgarmuyev.fastreader.applogic.Commands;
 import pavelgarmuyev.fastreader.applogic.WordSequencer;
 import pavelgarmuyev.fastreader.gui.*;
 import javax.swing.SwingUtilities;
@@ -33,8 +32,7 @@ public class Main {
         }
 
         WordSequencer ws = new WordSequencer(list);
-        Commands commands = new Commands(ws);
-        UserInterface ui = new UserInterface(commands);
+        UserInterface ui = new UserInterface(ws);
 
         SwingUtilities.invokeLater(ui);
 
