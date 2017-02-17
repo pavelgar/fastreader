@@ -27,6 +27,6 @@ Käyttäjä (lukija)
 * Tilastojen tarkastelu
 
 ### Luokkakaavio
-![Luokkakaavio](Luokkakaavio2.png)
+![Luokkakaavio](Luokkakaavio.png)
 
 ### Mukavia lukuhetkiä!
