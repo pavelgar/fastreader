@@ -9,7 +9,6 @@ Ohjelman tarkoituksena on auttaa käyttäjää lukemaan syöttämä teksti taval
 Ohjelma tulee tarjoamaan:
 * esittelykierroksen (tutorial) 
 * huippunopeuden valitsimen 
-* vaikeiden sanojen merkitsemisen 
 * pikanäppäimet pysäyttämiselle, taakse- ja eteenpäin 
 * tilastotietoa käyttäjästä, kuten luettujen sanojen määrä, tehtyjen taukojen määrä ja esim. useimmiten luettujen sanojen määrä
 
