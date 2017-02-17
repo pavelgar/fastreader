@@ -17,7 +17,6 @@ public class WordSequencer {
 
     public void setList(List<String> list) {
         this.list = list;
-        running = false;
     }
 
     public boolean isRunning() {
@@ -48,9 +47,9 @@ public class WordSequencer {
      * @param index     Asetettava indeksi.
      */
     public void setIndex(int index) {
-        if (index < 0) {
+        if (index <= 0) {
             this.index = 0;
-        } else if (index > list.size() - 1) {
+        } else if (index >= list.size() - 1) {
             this.index = list.size() - 1;
             setRunning(false);
         } else {

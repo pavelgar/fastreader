@@ -50,7 +50,6 @@ public class UserInterface implements Runnable {
         container.add(createControls());
         container.add(Box.createVerticalGlue());
         container.add(createSpeedSetter());
-        container.add(createProgressBar());
     }
 
     private JPanel createSpeedSetter() {
@@ -75,15 +74,6 @@ public class UserInterface implements Runnable {
         return speedPanel;
     }
 
-    private JProgressBar createProgressBar() {
-        JProgressBar progressBar = new JProgressBar(0, wordSequencer.totalWords());
-        progressBar.setValue(0);
-        progressBar.setStringPainted(true);
-        progressBar.setAlignmentX(0.9f);
-
-        return progressBar;
-    }
-
     private JPanel createBigWord() {
 
         JPanel bigWordPanel = new JPanel();
@@ -94,7 +84,7 @@ public class UserInterface implements Runnable {
         bigWord.setBorder(BorderFactory.createMatteBorder(2, 0, 2, 0, Color.BLACK));
         bigWord.setMinimumSize(new Dimension(400, 100));
         bigWord.setMaximumSize(new Dimension(400, 100));
-        bigWord.setFont(new Font("sans-serif", Font.PLAIN, 48));
+        bigWord.setFont(new Font("sans-serif", Font.PLAIN, 42));
         bigWord.setBackground(Color.WHITE);
         bigWord.setOpaque(true);
 
@@ -142,6 +132,11 @@ public class UserInterface implements Runnable {
         openFileItem.addActionListener(new OpenFileActionListener(wordSequencer, fileOpener, bigWord));
 
         menuBar.add(openFileItem);
+
+        JMenuItem pasteTextItem = new JMenuItem("Paste Text");
+        pasteTextItem.addActionListener(new PasteTextActionListener(wordSequencer, bigWord));
+
+        menuBar.add(pasteTextItem);
 
         JMenuItem statisticsItem = new JMenuItem("Statistics");
         statisticsItem.addActionListener(new StatisticsActionListener());

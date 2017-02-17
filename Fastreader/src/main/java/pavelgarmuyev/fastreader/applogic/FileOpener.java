@@ -9,22 +9,27 @@ import java.util.Scanner;
 public class FileOpener {
 
     public FileOpener() {
-
     }
 
+    /**
+     * Avaa tiedoston ja tallentaa jokaisen sanan listaan.
+     *
+     * @param path      Tiedoston sijainti kovalevyllä.
+     * @return          Lista tiedoston sanoista.
+     */
     public List<String> openFile(String path) {
         List<String> list = new ArrayList<>();
 
         try {
             Scanner fileScanner = new Scanner(new File(path));
-
-            while (fileScanner.hasNext()) {
-                list.add(fileScanner.next());
+            while (fileScanner.hasNextLine()) {
+                for (String s : fileScanner.nextLine().split(" ")) {
+                    list.add(s);
+                }
             }
             fileScanner.close();
 
         } catch (FileNotFoundException e) {
-            System.out.println("File not found");
         }
 
         return list;

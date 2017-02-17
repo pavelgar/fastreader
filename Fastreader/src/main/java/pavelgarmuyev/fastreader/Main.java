@@ -12,19 +12,21 @@ public class Main {
 
 
         FileOpener fo = new FileOpener();
-        WordSequencer ws = new WordSequencer(fo.openFile("test.txt"));
+        WordSequencer ws = new WordSequencer(fo.openFile("src/main/resources/tutorial.txt"));
         UserInterface ui = new UserInterface(ws, fo);
 
         SwingUtilities.invokeLater(ui);
 
-        while (true) {
 
-            System.out.println("jotain");
+        while (true) {
+            // Sanojen päivitys toimii vain, jos System.out.print() kutsutaan...
+            System.out.print("");
 
             if (ws.isRunning()) {
                 ui.setBigWord(ws.nextWord());
                 try {
-                    Thread.sleep(ws.getSpeed() / 60 * 1000);
+                    double time = 60d / ws.getSpeed() * 1000;
+                    Thread.sleep((int) time);
                 } catch (InterruptedException e) {
                     System.out.println("Printing error");
                 }

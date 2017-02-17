@@ -3,6 +3,7 @@ package pavelgarmuyev.fastreader.applogic;
 import org.junit.*;
 
 import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
@@ -31,7 +32,13 @@ public class FileOpenerTest {
 
     @Test
     public void openFileTest() {
-        fo.openFile("test.txt");
-        assertEquals(Arrays.asList(), ws.totalWords());
+        List<String> list = fo.openFile("openFileTest.txt");
+        assertEquals(Arrays.asList("This", "file", "is", "a", "test!"), list);
+    }
+
+    @Test
+    public void openFileClosesTest() {
+        List<String> list = fo.openFile("openFileTest.txt");
+        assertEquals(Arrays.asList("This", "file", "is", "a", "test!"), list);
     }
 }

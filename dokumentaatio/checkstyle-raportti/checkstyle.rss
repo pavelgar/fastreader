@@ -25,7 +25,7 @@ under the License.
     <language>en-us</language>
     <copyright>&#169;2017</copyright>
     <item>
-      <title>File: 7,
+      <title>File: 13,
              Errors: 0,
              Warnings: 0,
              Infos: 0
@@ -46,7 +46,7 @@ under the License.
           <tbody>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#pavelgarmuyev.fastreader.applogic.WordSequencer.java">pavelgarmuyev/fastreader/applogic/WordSequencer.java</a>
+                  <a href="${project.url}/checkstyle.html#pavelgarmuyev.fastreader.applogic.FileOpener.java">pavelgarmuyev/fastreader/applogic/FileOpener.java</a>
                 </td>
                 <td>
                   0
@@ -60,7 +60,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#pavelgarmuyev.fastreader.gui.UserInterface.java">pavelgarmuyev/fastreader/gui/UserInterface.java</a>
+                  <a href="${project.url}/checkstyle.html#pavelgarmuyev.fastreader.gui.OpenFileActionListener.java">pavelgarmuyev/fastreader/gui/OpenFileActionListener.java</a>
                 </td>
                 <td>
                   0
@@ -74,7 +74,21 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#pavelgarmuyev.fastreader.gui.RewindActionListener.java">pavelgarmuyev/fastreader/gui/RewindActionListener.java</a>
+                  <a href="${project.url}/checkstyle.html#pavelgarmuyev.fastreader.gui.SpeedSetterActionListener.java">pavelgarmuyev/fastreader/gui/SpeedSetterActionListener.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#pavelgarmuyev.fastreader.applogic.StatisticsRecorder.java">pavelgarmuyev/fastreader/applogic/StatisticsRecorder.java</a>
                 </td>
                 <td>
                   0
@@ -116,7 +130,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#pavelgarmuyev.fastreader.Main.java">pavelgarmuyev/fastreader/Main.java</a>
+                  <a href="${project.url}/checkstyle.html#pavelgarmuyev.fastreader.gui.PlayActionListener.java">pavelgarmuyev/fastreader/gui/PlayActionListener.java</a>
                 </td>
                 <td>
                   0
@@ -130,7 +144,77 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#pavelgarmuyev.fastreader.gui.PlayActionListener.java">pavelgarmuyev/fastreader/gui/PlayActionListener.java</a>
+                  <a href="${project.url}/checkstyle.html#pavelgarmuyev.fastreader.applogic.WordSequencer.java">pavelgarmuyev/fastreader/applogic/WordSequencer.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#pavelgarmuyev.fastreader.gui.StatisticsActionListener.java">pavelgarmuyev/fastreader/gui/StatisticsActionListener.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#pavelgarmuyev.fastreader.gui.UserInterface.java">pavelgarmuyev/fastreader/gui/UserInterface.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#pavelgarmuyev.fastreader.gui.RewindActionListener.java">pavelgarmuyev/fastreader/gui/RewindActionListener.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#pavelgarmuyev.fastreader.gui.PasteTextActionListener.java">pavelgarmuyev/fastreader/gui/PasteTextActionListener.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#pavelgarmuyev.fastreader.Main.java">pavelgarmuyev/fastreader/Main.java</a>
                 </td>
                 <td>
                   0

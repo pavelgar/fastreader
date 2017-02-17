@@ -21,8 +21,13 @@ public class OpenFileActionListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        ws.setRunning(false);
         String path = JOptionPane.showInputDialog(null, "Input full path to file");
+        if (path == null) {
+            return;
+        }
         ws.setList(fo.openFile(path));
+        // Miksi ei vaihda?
         bigWord.setText(ws.toBeginningOfText());
     }
 }

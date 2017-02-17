@@ -41,6 +41,12 @@ public class WordSequencerTest {
     }
 
     @Test
+    public void getSpeedTest() {
+        ws.setSpeed(1000);
+        assertEquals(1000, ws.getSpeed());
+    }
+
+    @Test
     public void totalWordsTest() {
         assertEquals(9, ws.totalWords());
     }
@@ -70,8 +76,14 @@ public class WordSequencerTest {
     }
 
     @Test
-    public void setIndexEqualToListSizeTest() {
+    public void setIndexToListSizeTest() {
         ws.setIndex(list.size());
+        assertEquals(list.size() - 1, ws.getIndex());
+    }
+
+    @Test
+    public void setIndexToListSizeTest2() {
+        ws.setIndex(list.size() - 1);
         assertEquals(list.size() - 1, ws.getIndex());
     }
 
@@ -135,6 +147,13 @@ public class WordSequencerTest {
     public void currentSentenceBeginningWhenReachedZeroTest() {
         ws = new WordSequencer(Arrays.asList("This", "is", "a", "test!"));
         ws.setIndex(3);
+        assertEquals("This", ws.currentSentenceBeginning());
+    }
+
+    @Test
+    public void currentSentenceBeginningNextSentenceTest() {
+        ws = new WordSequencer(Arrays.asList("This", "is.", "A", "sentence", "test!"));
+        ws.setIndex(2);
         assertEquals("This", ws.currentSentenceBeginning());
     }
 
