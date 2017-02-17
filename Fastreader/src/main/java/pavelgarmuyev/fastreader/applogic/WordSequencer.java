@@ -17,6 +17,7 @@ public class WordSequencer {
 
     public void setList(List<String> list) {
         this.list = list;
+        running = false;
     }
 
     public boolean isRunning() {
@@ -120,6 +121,12 @@ public class WordSequencer {
     public String currentSentenceBeginning() {
         String word = prevWord();
         char c = word.charAt(word.length() - 1);
+        boolean userWantsPrevSentence = (c == '.') || (c == '!') || (c == '?');
+
+        if (userWantsPrevSentence) {
+            word = prevWord();
+            c = word.charAt(word.length() - 1);
+        }
 
         while (c != '.' && c != '!' && c != '?') {
             if (index == 0) {
@@ -128,6 +135,7 @@ public class WordSequencer {
             word = prevWord();
             c = word.charAt(word.length() - 1);
         }
+
         return nextWord();
     }
 

@@ -139,7 +139,7 @@ public class UserInterface implements Runnable {
         JMenuBar menuBar = new JMenuBar();
 
         JMenuItem openFileItem = new JMenuItem("Open File");
-        openFileItem.addActionListener(new OpenFileActionListener(wordSequencer, fileOpener));
+        openFileItem.addActionListener(new OpenFileActionListener(wordSequencer, fileOpener, bigWord));
 
         menuBar.add(openFileItem);
 
