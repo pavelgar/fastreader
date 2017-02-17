@@ -1,5 +1,5 @@
 # Fastreader
-Fastreader auttaa sinua lukemaan nopeammin, kuin perinteisesti. Kun katsetta ei tarvitse liikuttaa sanasta sanaa, jää enemmän aikaa jokaisen sanan lukemiseen, mikä meinaa, että ehdit lukea enemmän samassa ajanjaksossa.
+Fastreader auttaa sinua lukemaan nopeammin, kuin perinteisesti. Kun katsetta ei tarvitse liikuttaa sanasta sanaan, jää enemmän aikaa jokaisen sanan lukemiseen, jolloin ehdit lukea enemmän.
 
 ## Dokumentaatio
 [Aiheen tarkempi dokumentaatio](dokumentaatio/aiheenKuvausJaRakenne.md)
