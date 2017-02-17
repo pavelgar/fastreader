@@ -50,15 +50,24 @@ public class WordSequencerTest {
         ws.setIndex(Integer.MIN_VALUE);
         assertEquals(0, ws.getIndex());
     }
+
     @Test
-    public void setIndexUndexTest() {
+    public void setIndexUnderTest() {
         ws.setIndex(Integer.MAX_VALUE);
         assertEquals(list.size() - 1, ws.getIndex());
     }
+
     @Test
     public void setIndexNormalTest() {
         ws.setIndex(1);
         assertEquals(1, ws.getIndex());
+    }
+
+    @Test
+    public void setIndexSetsRunningTest() {
+        ws.setRunning(true);
+        ws.setIndex(Integer.MAX_VALUE);
+        assertEquals(false, ws.isRunning());
     }
 
     @Test
@@ -108,6 +117,13 @@ public class WordSequencerTest {
     public void currentSentenceBeginningWhenOnTheRightWordTest() {
         ws.setIndex(1);
         assertEquals("Is", ws.currentSentenceBeginning());
+    }
+
+    @Test
+    public void currentSentenceBeginningWhenReachedZeroTest() {
+        ws = new WordSequencer(Arrays.asList("This", "is", "a", "test!"));
+        ws.setIndex(3);
+        assertEquals("This", ws.currentSentenceBeginning());
     }
 
     @Test

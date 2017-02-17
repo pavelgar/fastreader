@@ -6,11 +6,25 @@ import java.util.List;
 public class WordSequencer {
     private List<String> list;
     private int speed, index;
+    private boolean running;
 
     public WordSequencer(List<String> list) {
         this.list = list;
         index = 0;
         speed = 100;
+        running = false;
+    }
+
+    public void setList(List<String> list) {
+        this.list = list;
+    }
+
+    public boolean isRunning() {
+        return running;
+    }
+
+    public void setRunning(boolean running) {
+        this.running = running;
     }
 
     public int getSpeed() {
@@ -37,6 +51,7 @@ public class WordSequencer {
             this.index = 0;
         } else if (index > list.size() - 1) {
             this.index = list.size() - 1;
+            setRunning(false);
         } else {
             this.index = index;
         }
@@ -107,6 +122,9 @@ public class WordSequencer {
         char c = word.charAt(word.length() - 1);
 
         while (c != '.' && c != '!' && c != '?') {
+            if (index == 0) {
+                return list.get(index);
+            }
             word = prevWord();
             c = word.charAt(word.length() - 1);
         }
