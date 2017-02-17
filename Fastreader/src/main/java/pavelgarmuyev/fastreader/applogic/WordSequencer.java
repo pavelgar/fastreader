@@ -8,6 +8,10 @@ public class WordSequencer {
     private int speed, index;
     private boolean running;
 
+    /**
+     * Luo uuden WordSequencerin, joka tarjoaa listassa navigointia lauseiden mukaan.
+     * @param list      Lista, jota navigoidaan.
+     */
     public WordSequencer(List<String> list) {
         this.list = list;
         index = 0;

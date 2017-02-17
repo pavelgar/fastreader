@@ -10,6 +10,10 @@ public class StatisticsRecorder {
 
     private Properties defaults;
 
+    /**
+     * Luo uuden properties tallentavan olion.
+     */
+
     public StatisticsRecorder() {
         // Onko tämä luokka tehty oikein? Tarkoituksena käyttää .properties -tiedostoa
 
