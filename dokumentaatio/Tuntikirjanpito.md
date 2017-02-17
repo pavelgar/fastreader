@@ -9,3 +9,4 @@
 01.02.2017 |   3h   | GUI:n tekemistä
 03.02.2017 |   5h   | Sovelluslogiikkaa ja lisää GUI:ta
 10.02.2017 |   3h   | Sovelluslogiikan ja testien rewrite ja Javadoc
+17.02.2017 |   4h   | Testejä ja uusia soelluslogiikan luokkia
