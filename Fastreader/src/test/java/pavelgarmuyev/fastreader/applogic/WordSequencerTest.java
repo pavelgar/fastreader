@@ -119,6 +119,14 @@ public class WordSequencerTest {
         ws.prevWord();
         assertEquals("Is", ws.prevWord());
     }
+    
+    @Test
+    public void prevWordSetIndexTest() {
+        ws.setIndex(4);
+        ws.prevWord();
+        ws.prevWord();
+        assertEquals(2, ws.getIndex());
+    }
 
     @Test
     public void prevWordWhenListIsEmptyTest() {
@@ -135,6 +143,12 @@ public class WordSequencerTest {
     public void currentSentenceBeginningTest() {
         ws.setIndex(6);
         assertEquals("Please,", ws.currentSentenceBeginning());
+    }
+    
+    @Test
+    public void currentSentenceBeginningWhenIndexZeroTest() {
+        ws.currentSentenceBeginning();
+        assertEquals("This?", ws.currentSentenceBeginning());
     }
 
     @Test

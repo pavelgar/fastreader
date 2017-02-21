@@ -1,5 +1,4 @@
-This file is a test! 
-Fastreader on ohjelma, joka auttaa sinua lukemaan nopeammin.
+﻿Fastreader on ohjelma, joka auttaa sinua lukemaan nopeammin.
 Kohdista katseesi rivin keskelle ja rentoudu.
 Mitä rennompi olet, sitä paremmin pystyt lukemaan.
 Ruudun alalaidassa voit vaihtaa lukunopeutta.

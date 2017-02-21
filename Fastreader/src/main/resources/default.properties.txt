@@ -1,3 +1,0 @@
-preferred_speed=100
-words_read=0
-pauses_made=0

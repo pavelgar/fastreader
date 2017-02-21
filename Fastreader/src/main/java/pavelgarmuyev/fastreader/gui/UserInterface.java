@@ -4,6 +4,8 @@ import pavelgarmuyev.fastreader.applogic.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class UserInterface implements Runnable {
 
@@ -23,7 +25,7 @@ public class UserInterface implements Runnable {
      */
     @Override
     public void run() {
-        frame = new JFrame("FastReader");
+        frame = new JFrame("Fastreader");
         frame.setPreferredSize(new Dimension(500, 300));
 
         frame.getContentPane().setBackground(Color.WHITE);
@@ -40,13 +42,15 @@ public class UserInterface implements Runnable {
         frame.setVisible(true);
     }
 
-    public void setBigWord(String word) {
-        bigWord.setText(word);
+    public JLabel getBigWord() {
+        return bigWord;
     }
 
     private void createComponents(Container container) {
         container.setLayout(new BoxLayout(container, BoxLayout.Y_AXIS));
+        container.add(Box.createRigidArea(new Dimension(0, 30)));
         container.add(createBigWord());
+        container.add(Box.createRigidArea(new Dimension(0, 20)));
         container.add(createControls());
         container.add(Box.createVerticalGlue());
         container.add(createSpeedSetter());
@@ -63,7 +67,11 @@ public class UserInterface implements Runnable {
         speedPanel.add(speedLabel);
 
         JTextField speedSetter = new JTextField();
-        speedSetter.addActionListener(new SpeedSetterActionListener(wordSequencer, speedSetter));
+        speedSetter.addActionListener(e -> {
+            String input = speedSetter.getText();
+            if (input.matches("[0-9]+")) wordSequencer.setSpeed(Integer.parseInt(input));
+            else speedSetter.setText(wordSequencer.getSpeed() + "");
+        });
         speedSetter.setMaximumSize(new Dimension(40, 14));
         speedSetter.setMinimumSize(new Dimension(40, 14));
         speedSetter.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.BLACK));
@@ -101,19 +109,28 @@ public class UserInterface implements Runnable {
         JButton[] buttons = new JButton[4];
 
         JButton rewindButton = new JButton(new ImageIcon("src/main/resources/rewind_button.png"));
-        rewindButton.addActionListener(new RewindActionListener(wordSequencer, bigWord));
+        rewindButton.addActionListener(e -> {
+            wordSequencer.setRunning(false);
+            bigWord.setText(wordSequencer.toBeginningOfText());
+        });
         buttons[0] = rewindButton;
 
         JButton prevButton = new JButton(new ImageIcon("src/main/resources/prev_sentence_button.png"));
-        prevButton.addActionListener(new BackwardsActionListener(wordSequencer, bigWord));
+        prevButton.addActionListener(e -> {
+            wordSequencer.setRunning(false);
+            bigWord.setText(wordSequencer.currentSentenceBeginning());
+        });
         buttons[1] = prevButton;
 
         JButton playButton = new JButton(new ImageIcon("src/main/resources/play_button.png"));
-        playButton.addActionListener(new PlayActionListener(wordSequencer));
+        playButton.addActionListener(e -> wordSequencer.setRunning(!wordSequencer.isRunning()));
         buttons[2] = playButton;
 
         JButton nextButton = new JButton(new ImageIcon("src/main/resources/next_sentence_button.png"));
-        nextButton.addActionListener(new ForwardsActionListener(wordSequencer, bigWord));
+        nextButton.addActionListener(e -> {
+            wordSequencer.setRunning(false);
+            bigWord.setText(wordSequencer.nextSentenceBeginning());
+        });
         buttons[3] = nextButton;
 
         for (JButton jb : buttons) {
@@ -129,17 +146,37 @@ public class UserInterface implements Runnable {
         JMenuBar menuBar = new JMenuBar();
 
         JMenuItem openFileItem = new JMenuItem("Open File");
-        openFileItem.addActionListener(new OpenFileActionListener(wordSequencer, fileOpener, bigWord));
+        openFileItem.addActionListener(e -> {
+            wordSequencer.setRunning(false);
+            String path = JOptionPane.showInputDialog(frame, "Input full path to file");
+            if (path == null) return;
+            ArrayList<String> list = fileOpener.openFile(path);
+            if (list == null) return;
+            else if (list.isEmpty()) return;
+            wordSequencer.setList(list);
+            bigWord.setText(wordSequencer.toBeginningOfText());
+        });
 
         menuBar.add(openFileItem);
 
         JMenuItem pasteTextItem = new JMenuItem("Paste Text");
-        pasteTextItem.addActionListener(new PasteTextActionListener(wordSequencer, bigWord));
+        pasteTextItem.addActionListener(e -> {
+            wordSequencer.setRunning(false);
+            String input = JOptionPane.showInputDialog(frame, "Paste text below");
+            if (input == null) return;
+            ArrayList<String> list = new ArrayList<>();
+            list.addAll(Arrays.asList(input.split(" ")));
+            wordSequencer.setList(list);
+            bigWord.setText(wordSequencer.toBeginningOfText());
+        });
 
         menuBar.add(pasteTextItem);
 
         JMenuItem statisticsItem = new JMenuItem("Statistics");
-        statisticsItem.addActionListener(new StatisticsActionListener());
+        statisticsItem.addActionListener(e -> {
+            wordSequencer.setRunning(false);
+            JOptionPane.showMessageDialog(frame, "Statistics", "Statistics", JOptionPane.INFORMATION_MESSAGE);
+        });
 
         menuBar.add(statisticsItem);
 

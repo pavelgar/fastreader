@@ -1,55 +1,84 @@
 package pavelgarmuyev.fastreader.applogic;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.util.Properties;
 
 public class StatisticsRecorder {
 
-    private Properties defaults;
+    private Properties properties;
+    private String path;
+    private File file;
+    private InputStream input;
+    private OutputStream output;
+
+    // Property names:
+    private final String preferredSpeed = "preferred_speed";
+    private final String wordsRead = "words_read";
+    private final String pausesMade = "pauses_made";
 
     /**
      * Luo uuden properties tallentavan olion.
      */
 
-    public StatisticsRecorder() {
-        // Onko tämä luokka tehty oikein? Tarkoituksena käyttää .properties -tiedostoa
+    public StatisticsRecorder(String propertiesPath) {
+        properties = new Properties();
+        path = propertiesPath;
+        file = new File(path);
 
-        defaults = new Properties();
-        FileInputStream in = null;
-        try {
-            in = new FileInputStream("src/main/resources/default.properties.txt");
-        } catch (FileNotFoundException e) {
-            System.out.println("Can't find default properties file");
+        if (!file.exists()) {
+            createDefaults();
+        } else {
+            loadProperties();
         }
+    }
+
+    private void createDefaults() {
         try {
-            defaults.load(in);
+            file.createNewFile();
         } catch (IOException e) {
-            System.out.println("No properties found or syntax error");
+            System.out.println("Couldn't create new file " + path);
         }
-        try {
-            in.close();
-        } catch (IOException e) {
-            System.out.println("Can't close default properties file");
-        }
-        Properties appConfig = new Properties(defaults);
 
         try {
-            in = new FileInputStream("src/main/resources/default.properties.txt");
-        } catch (FileNotFoundException e) {
-            System.out.println("Can't find application's properties file");
-        }
-        try {
-            appConfig.load(in);
+            output = new FileOutputStream(file);
+            properties.setProperty(preferredSpeed, "100");
+            properties.setProperty(wordsRead, "0");
+            properties.setProperty(pausesMade, "0");
+
+            properties.store(output, null);
+
         } catch (IOException e) {
-            System.out.println("Syntax error");
+            System.out.println("Couldn't write to " + path);
+        } finally {
+            if (output != null) {
+                try {
+                    output.close();
+                } catch (IOException e) {
+                    System.out.println("Couldn't close OutputStream");
+                }
+            }
         }
+    }
+
+    private void loadProperties() {
         try {
-            in.close();
+            input = new FileInputStream(file);
+
+            properties.load(input);
+
+            for (String s : properties.stringPropertyNames())
+                System.out.println(s);
+
         } catch (IOException e) {
-            System.out.println("Can't close properties file");
+            System.out.println("Couldn't load properties " + path);
+        } finally {
+            if (input != null) {
+                try {
+                    input.close();
+                } catch (IOException e) {
+                    System.out.println("Couldn't close FileInputStream");
+                }
+            }
         }
     }
 }

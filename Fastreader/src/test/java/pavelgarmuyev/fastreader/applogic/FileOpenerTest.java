@@ -38,7 +38,7 @@ public class FileOpenerTest {
 
     @Test
     public void openFileClosesTest() {
-        List<String> list = fo.openFile("openFileTest.txt");
-        assertEquals(Arrays.asList("This", "file", "is", "a", "test!"), list);
+        List<String> list = fo.openFile("openFileTest2.txt");
+        assertEquals(null, list);
     }
 }

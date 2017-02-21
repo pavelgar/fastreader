@@ -10,10 +10,10 @@ public class WordSequencer {
 
     /**
      * Luo uuden WordSequencerin, joka tarjoaa listassa navigointia lauseiden mukaan.
-     * @param list      Lista, jota navigoidaan.
+     * @param words      Lista, jota navigoidaan.
      */
-    public WordSequencer(List<String> list) {
-        this.list = list;
+    public WordSequencer(List<String> words) {
+        list = words;
         index = 0;
         speed = 100;
         running = false;
@@ -117,11 +117,15 @@ public class WordSequencer {
 
     /**
      * Laskee indeksiä yhdellä, kunnes edellinen sana loppuu lopetusmerkkiin: . ! ?.
-     * Palauttaa tämän jälkeen seuraavan sanan, joka on metodin alussa olevan lauseen ensimmäinen sana.
+     * Palauttaa tämän jälkeen seuraavan sanan.
      *
      * @return      Nykyisen lauseen ensimmäinen sana.
      */
     public String currentSentenceBeginning() {
+        if (index == 0) {
+            return list.get(index);
+        }
+        
         String word = prevWord();
         char c = word.charAt(word.length() - 1);
         boolean userWantsPrevSentence = (c == '.') || (c == '!') || (c == '?');
