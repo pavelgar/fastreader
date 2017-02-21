@@ -9,14 +9,11 @@ import pavelgarmuyev.fastreader.gui.UserInterface;
 import javax.swing.SwingUtilities;
 
 public class Main {
-    
+
     public static void main(String[] args) {
-
-        FileOpener fo = new FileOpener();
-        new StatisticsRecorder("src/main/resources/config.properties");
-        WordSequencer ws = new WordSequencer(fo.openFile("src/main/resources/tutorial.txt"));
-        UserInterface ui = new UserInterface(ws, fo);
-
+        WordSequencer ws = new WordSequencer("src/main/resources/tutorial.txt",
+                "src/main/resources/config.properties");
+        UserInterface ui = new UserInterface(ws);
         SwingUtilities.invokeLater(ui);
 
         while (true) {

@@ -1,6 +1,8 @@
 package pavelgarmuyev.fastreader.applogic;
 
 import java.io.*;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 public class StatisticsRecorder {
@@ -12,24 +14,33 @@ public class StatisticsRecorder {
     private OutputStream output;
 
     // Property names:
-    private final String preferredSpeed = "preferred_speed";
-    private final String wordsRead = "words_read";
-    private final String pausesMade = "pauses_made";
+    private final String PREFERRED_SPEED = "preferred_speed";
+    private final String WORDS_READ = "stat_words_read";
+    private final String PAUSES_MADE = "stat_pauses_made";
+
+    private Map<String, String> defaults;
 
     /**
-     * Luo uuden properties tallentavan olion.
+     * Luo uuden olion, joka tallentaa statistiikaa ohjelman käyttäjästä properties -tiedostoon.
+     * @param propertiesPath    Avattavan/luotavan properties -tiedoston polku.
      */
-
     public StatisticsRecorder(String propertiesPath) {
+        defaults = new HashMap<>();
+
+        // Default values
+        defaults.put(PREFERRED_SPEED, "100");
+        defaults.put(WORDS_READ, "0");
+        defaults.put(PAUSES_MADE, "0");
+
         properties = new Properties();
         path = propertiesPath;
         file = new File(path);
 
         if (!file.exists()) {
             createDefaults();
-        } else {
-            loadProperties();
         }
+        loadProperties();
+        checkProperties();
     }
 
     private void createDefaults() {
@@ -41,10 +52,10 @@ public class StatisticsRecorder {
 
         try {
             output = new FileOutputStream(file);
-            properties.setProperty(preferredSpeed, "100");
-            properties.setProperty(wordsRead, "0");
-            properties.setProperty(pausesMade, "0");
 
+            for (String key : defaults.keySet()) {
+                properties.setProperty(key, defaults.get(key));
+            }
             properties.store(output, null);
 
         } catch (IOException e) {
@@ -60,17 +71,28 @@ public class StatisticsRecorder {
         }
     }
 
+    private void checkProperties() {
+        for (String key : defaults.keySet()) {
+            if (!properties.containsKey(key)) {
+                properties.setProperty(key, defaults.get(key));
+            }
+        }
+        for (String key : properties.stringPropertyNames()) {
+            if (!defaults.containsKey(key)) {
+                properties.remove(key);
+            }
+        }
+        updateProperties();
+    }
+
     private void loadProperties() {
         try {
             input = new FileInputStream(file);
 
             properties.load(input);
 
-            for (String s : properties.stringPropertyNames())
-                System.out.println(s);
-
         } catch (IOException e) {
-            System.out.println("Couldn't load properties " + path);
+            System.out.println("Couldn't load properties ");
         } finally {
             if (input != null) {
                 try {
@@ -80,5 +102,75 @@ public class StatisticsRecorder {
                 }
             }
         }
+    }
+
+    private void updateProperties() {
+        try {
+            output = new FileOutputStream(file);
+            properties.store(output, null);
+
+        } catch (IOException e) {
+            System.out.println("Couldn't save properties");
+        } finally {
+            if (output != null) {
+                try {
+                    output.close();
+                } catch (IOException e) {
+                    System.out.println("Couldn't close FileOutputStream");
+                }
+            }
+        }
+    }
+
+    /**
+     * Tallentaa asetetun nopeuden.
+     * @param value     Tallennettavan nopeuden arvo.
+     */
+    public void setPreferredSpeed(int value) {
+        properties.setProperty(PREFERRED_SPEED, Integer.toString(value));
+        updateProperties();
+    }
+
+    /**
+     * Hakee tallennetun nopeudeun.
+     * @return  Nopeus.
+     */
+    public int getPreferredSpeed() {
+        return Integer.parseInt(properties.getProperty(PREFERRED_SPEED));
+    }
+
+    /**
+     * Kasvattaa luettujen sanojen määrää yhdellä ja tallentaa uuden arvon.
+     */
+    public void incrementWordsRead() {
+        int total = Integer.parseInt(properties.getProperty(WORDS_READ));
+        properties.setProperty(WORDS_READ, Integer.toString(total + 1));
+        updateProperties();
+    }
+
+    /**
+     * Kasvattaa tehtyjen taukojen määrää yhdellä ja tallentaa uuden arvon.
+     */
+    public void incrementPausesMade() {
+        int total = Integer.parseInt(properties.getProperty(PAUSES_MADE));
+        properties.setProperty(PAUSES_MADE, Integer.toString(total + 1));
+        updateProperties();
+    }
+
+    /**
+     * Käy läpi kaikki validit muuttujat.
+     * Valitsee niistä kaikki "stat_" alkuiset sekä niiden arvot ja tallentaa uuteen hajautustauluun.
+     *
+     * @return  Map, jossa on avaimena muuttujan nimi ilman "stat_" alkua ja arvona alkuperäisen avaimeen liittyvä arvo.
+     */
+    public Map<String, String> getStatistics() {
+        Map<String, String> statistics = new HashMap<>();
+
+        for (String key : defaults.keySet()) {
+            if (key.startsWith("stat_")) {
+                statistics.put(key.substring(5), properties.getProperty(key));
+            }
+        }
+        return statistics;
     }
 }

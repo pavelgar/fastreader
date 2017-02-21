@@ -1,13 +1,10 @@
 
 package pavelgarmuyev.fastreader.applogic;
 
-import org.junit.After;
-import org.junit.AfterClass;
+import org.junit.*;
 import static org.junit.Assert.*;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -15,10 +12,11 @@ import java.util.List;
 public class WordSequencerTest {
 
     private static List<String> list = Arrays.asList("This?", "Is", "a", "serious", "test.", "Please,", "kill", "all", "mutants!");
-    private WordSequencer ws;
+    private static String propertiesPath = "src/main/resources/test.properties";
+    private static String testFilePath = "src/main/resources/test.txt";
+    private static WordSequencer ws;
 
     public WordSequencerTest() {
-        
     }
     
     @BeforeClass
@@ -27,12 +25,13 @@ public class WordSequencerTest {
 
     @AfterClass
     public static void tearDownClass() {
-        
+        File file = new File(propertiesPath);
+        file.delete();
     }
 
     @Before
     public void setUp() {
-        ws = new WordSequencer(list);
+        ws = new WordSequencer(testFilePath, propertiesPath);
     }
 
     @After
@@ -102,7 +101,7 @@ public class WordSequencerTest {
 
     @Test
     public void nextWordWhenListIsEmptyTest() {
-        ws = new WordSequencer(new ArrayList<>());
+        ws.setList(new ArrayList<>());
         assertEquals(null, ws.nextWord());
     }
 
@@ -127,10 +126,16 @@ public class WordSequencerTest {
         ws.prevWord();
         assertEquals(2, ws.getIndex());
     }
+    
+    @Test
+    public void prevWordSetIndexZeroTest() {
+        ws.setIndex(0);
+        assertEquals(list.get(0), ws.prevWord());
+    }
 
     @Test
     public void prevWordWhenListIsEmptyTest() {
-        ws = new WordSequencer(new ArrayList<>());
+        ws.setList(new ArrayList<>());
         assertEquals(null, ws.prevWord());
     }
 
@@ -159,14 +164,14 @@ public class WordSequencerTest {
 
     @Test
     public void currentSentenceBeginningWhenReachedZeroTest() {
-        ws = new WordSequencer(Arrays.asList("This", "is", "a", "test!"));
+        ws.setList(Arrays.asList("This", "is", "a", "test!"));
         ws.setIndex(3);
         assertEquals("This", ws.currentSentenceBeginning());
     }
 
     @Test
     public void currentSentenceBeginningNextSentenceTest() {
-        ws = new WordSequencer(Arrays.asList("This", "is.", "A", "sentence", "test!"));
+        ws.setList(Arrays.asList("This", "is.", "A", "sentence", "test!"));
         ws.setIndex(2);
         assertEquals("This", ws.currentSentenceBeginning());
     }
@@ -181,5 +186,20 @@ public class WordSequencerTest {
     public void setListTest() {
         ws.setList(new ArrayList<>());
         assertEquals(false, ws.isRunning());
+    }
+    
+    @Test
+    public void openPathTest() {
+        assertEquals(true, ws.openPath(testFilePath));
+    }
+    
+    @Test
+    public void openPathNullTest() {
+        assertEquals(false, ws.openPath(""));
+    }
+    
+    @Test
+    public void openPathEmptyTest() {
+        assertEquals(false, ws.openPath("src/main/resources/emptyTest.txt"));
     }
 }

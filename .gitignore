@@ -3,3 +3,4 @@ target
 .idea
 Fastreader.iml
 config.properties
+test.properties

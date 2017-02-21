@@ -1,6 +1,6 @@
 package pavelgarmuyev.fastreader.gui;
 
-import pavelgarmuyev.fastreader.applogic.*;
+import pavelgarmuyev.fastreader.applogic.WordSequencer;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,13 +11,10 @@ public class UserInterface implements Runnable {
 
     private JFrame frame;
     private WordSequencer wordSequencer;
-    private FileOpener fileOpener;
-    private StatisticsRecorder stats;
     private JLabel bigWord;
 
-    public UserInterface(WordSequencer ws, FileOpener fo) {
+    public UserInterface(WordSequencer ws) {
         wordSequencer = ws;
-        fileOpener = fo;
     }
 
     /**
@@ -123,7 +120,10 @@ public class UserInterface implements Runnable {
         buttons[1] = prevButton;
 
         JButton playButton = new JButton(new ImageIcon("src/main/resources/play_button.png"));
-        playButton.addActionListener(e -> wordSequencer.setRunning(!wordSequencer.isRunning()));
+        playButton.addActionListener(e -> {
+            if (wordSequencer.isRunning()) wordSequencer.incrementPauses();
+            wordSequencer.setRunning(!wordSequencer.isRunning());
+        });
         buttons[2] = playButton;
 
         JButton nextButton = new JButton(new ImageIcon("src/main/resources/next_sentence_button.png"));
@@ -150,11 +150,8 @@ public class UserInterface implements Runnable {
             wordSequencer.setRunning(false);
             String path = JOptionPane.showInputDialog(frame, "Input full path to file");
             if (path == null) return;
-            ArrayList<String> list = fileOpener.openFile(path);
-            if (list == null) return;
-            else if (list.isEmpty()) return;
-            wordSequencer.setList(list);
-            bigWord.setText(wordSequencer.toBeginningOfText());
+            boolean valid = wordSequencer.openPath(path);
+            if (valid) bigWord.setText(wordSequencer.toBeginningOfText());
         });
 
         menuBar.add(openFileItem);
@@ -175,7 +172,7 @@ public class UserInterface implements Runnable {
         JMenuItem statisticsItem = new JMenuItem("Statistics");
         statisticsItem.addActionListener(e -> {
             wordSequencer.setRunning(false);
-            JOptionPane.showMessageDialog(frame, "Statistics", "Statistics", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(frame, wordSequencer.getStatistics(), "Statistics", JOptionPane.INFORMATION_MESSAGE);
         });
 
         menuBar.add(statisticsItem);

@@ -3,6 +3,7 @@ package pavelgarmuyev.fastreader.applogic;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class FileOpener {
@@ -17,7 +18,7 @@ public class FileOpener {
      * @param path      Tiedoston sijainti kovalevyllä.
      * @return          Lista tiedoston sanoista.
      */
-    public ArrayList<String> openFile(String path) {
+    public List<String> openFile(String path) {
         ArrayList<String> list = new ArrayList<>();
 
         try {
