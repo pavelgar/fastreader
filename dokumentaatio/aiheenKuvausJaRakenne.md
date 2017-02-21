@@ -28,4 +28,7 @@ Käyttäjä (lukija)
 ### Luokkakaavio
 ![Luokkakaavio](luokkakaavio.png)
 
+### Sekvenssikaaviot
+![](Sekvenssikaaviot.png)
+
 ### Mukavia lukuhetkiä!
