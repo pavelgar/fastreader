@@ -26,6 +26,7 @@ Käyttäjä (lukija)
 * Tilastojen tarkastelu
 
 ### Luokkakaavio
+![Luokkakaavio](luokkakaavio.png)
 
 ### Sekvenssikaaviot
 ![](Sekvenssikaaviot.png)
