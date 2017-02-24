@@ -1,8 +1,6 @@
 
 package pavelgarmuyev.fastreader;
 
-import pavelgarmuyev.fastreader.applogic.FileOpener;
-import pavelgarmuyev.fastreader.applogic.StatisticsRecorder;
 import pavelgarmuyev.fastreader.applogic.WordSequencer;
 import pavelgarmuyev.fastreader.gui.UserInterface;
 

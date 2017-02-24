@@ -14,9 +14,9 @@ public class StatisticsRecorder {
     private OutputStream output;
 
     // Property names:
-    private final String PREFERRED_SPEED = "preferred_speed";
-    private final String WORDS_READ = "stat_words_read";
-    private final String PAUSES_MADE = "stat_pauses_made";
+    private final String preferredSpeed = "preferred_speed";
+    private final String wordsRead = "stat_words_read";
+    private final String pausesMade = "stat_pauses_made";
 
     private Map<String, String> defaults;
 
@@ -28,9 +28,9 @@ public class StatisticsRecorder {
         defaults = new HashMap<>();
 
         // Default values
-        defaults.put(PREFERRED_SPEED, "100");
-        defaults.put(WORDS_READ, "0");
-        defaults.put(PAUSES_MADE, "0");
+        defaults.put(preferredSpeed, "100");
+        defaults.put(wordsRead, "0");
+        defaults.put(pausesMade, "0");
 
         properties = new Properties();
         path = propertiesPath;
@@ -127,7 +127,7 @@ public class StatisticsRecorder {
      * @param value     Tallennettavan nopeuden arvo.
      */
     public void setPreferredSpeed(int value) {
-        properties.setProperty(PREFERRED_SPEED, Integer.toString(value));
+        properties.setProperty(preferredSpeed, Integer.toString(value));
         updateProperties();
     }
 
@@ -136,15 +136,15 @@ public class StatisticsRecorder {
      * @return  Nopeus.
      */
     public int getPreferredSpeed() {
-        return Integer.parseInt(properties.getProperty(PREFERRED_SPEED));
+        return Integer.parseInt(properties.getProperty(preferredSpeed));
     }
 
     /**
      * Kasvattaa luettujen sanojen määrää yhdellä ja tallentaa uuden arvon.
      */
     public void incrementWordsRead() {
-        int total = Integer.parseInt(properties.getProperty(WORDS_READ));
-        properties.setProperty(WORDS_READ, Integer.toString(total + 1));
+        int total = Integer.parseInt(properties.getProperty(wordsRead));
+        properties.setProperty(wordsRead, Integer.toString(total + 1));
         updateProperties();
     }
 
@@ -152,8 +152,8 @@ public class StatisticsRecorder {
      * Kasvattaa tehtyjen taukojen määrää yhdellä ja tallentaa uuden arvon.
      */
     public void incrementPausesMade() {
-        int total = Integer.parseInt(properties.getProperty(PAUSES_MADE));
-        properties.setProperty(PAUSES_MADE, Integer.toString(total + 1));
+        int total = Integer.parseInt(properties.getProperty(pausesMade));
+        properties.setProperty(pausesMade, Integer.toString(total + 1));
         updateProperties();
     }
 

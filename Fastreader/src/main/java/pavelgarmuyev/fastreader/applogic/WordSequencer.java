@@ -1,7 +1,6 @@
 
 package pavelgarmuyev.fastreader.applogic;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -19,48 +18,46 @@ public class WordSequencer {
      */
     public WordSequencer(String textPath, String statisticsPath) {
         stats = new StatisticsRecorder(statisticsPath);
-
         fileOpener = new FileOpener();
         list = fileOpener.openFile(textPath);
         index = 0;
         speed = stats.getPreferredSpeed();
         running = false;
     }
-
+    
     public void setList(List<String> list) {
         this.list = list;
     }
-
     public boolean isRunning() {
         return running;
     }
-
     public void setRunning(boolean running) {
         this.running = running;
     }
-
+    /**
+     * Kutsuu statistiikkaluokan metodia <code>incrementPausesMade()</code>, joka korottaa taukojen määrää yhdellä.
+     */
     public void incrementPauses() {
         stats.incrementPausesMade();
     }
-
     public int getSpeed() {
         return speed;
     }
-
+    /**
+     * Nopeuden asettamisen lisäksi tämä metodi kutsuu statisiikkaluokan metodia <code>setPreferredSpeed()</code>, joka tallentaa valitun nopeuden.
+     * @param speed 
+     */
     public void setSpeed(int speed) {
         this.speed = speed;
         stats.setPreferredSpeed(speed);
     }
-
     public int getIndex() {
         return index;
     }
-
     /**
      * Asettaa nykyisen sanan indeksin.
      * Jos annettu parametri on alle 0, asettaa metodi indeksin nollakis.
      * Jos annettu parametri on yli korkeimman indeksin, asettaa metodi indeksin korkeimmaksi mahdolliseksi.
-     *
      * @param index     Asetettava indeksi.
      */
     public void setIndex(int index) {
@@ -73,19 +70,15 @@ public class WordSequencer {
             this.index = index;
         }
     }
-
     /**
      * Palautaa sanojen maaran nykyisessä WordSequencerissä.
-     *
      * @return      Palauttaa sanojen määrän.
      */
     public int totalWords() {
         return list.size();
     }
-
     /**
      * Asettaa indeksin yhden eteenpäin ja palauttaa uuden indeksin kohdalla olevan sanan.
-     *
      * @return      Palauttaa seuraavan sanan.
      */
     public String nextWord() {
@@ -96,49 +89,40 @@ public class WordSequencer {
         stats.incrementWordsRead();
         return list.get(index);
     }
-
     /**
      * Asettaa indeksin yhden taaksepäin ja palauttaa uuden indeksin kohdalla olevan sanan.
-     *
      * @return      Palauttaa edellisen sanan.
      */
     public String prevWord() {
         if (list.isEmpty()) {
             return null;
         }
-
         setIndex(index - 1);
         return list.get(index);
     }
-
     /**
      * Nostaa indeksiä yhdellä, kunnes seuraava sana loppuu lopetusmerkkiin: . ! ?.
      * Palauttaa tämän jälkeen seuraavan sanan, joka on seuraavan lauseen alku.
-     *
      * @return     Seuraavan lauseen ensimmäinen sana.
      */
     public String nextSentenceBeginning() {
         String word = list.get(index);
         char c = word.charAt(word.length() - 1);
-        
         while (c != '.' && c != '!' && c != '?') {
             word = nextWord();
             c = word.charAt(word.length() - 1);
         }
         return nextWord();
     }
-
     /**
      * Laskee indeksiä yhdellä, kunnes edellinen sana loppuu lopetusmerkkiin: . ! ?.
      * Palauttaa tämän jälkeen seuraavan sanan.
-     *
      * @return      Nykyisen lauseen ensimmäinen sana.
      */
     public String currentSentenceBeginning() {
         if (index == 0) {
             return list.get(index);
         }
-        
         String word = prevWord();
         char c = word.charAt(word.length() - 1);
         boolean userWantsPrevSentence = (c == '.') || (c == '!') || (c == '?');
@@ -147,7 +131,6 @@ public class WordSequencer {
             word = prevWord();
             c = word.charAt(word.length() - 1);
         }
-
         while (c != '.' && c != '!' && c != '?') {
             if (index == 0) {
                 return list.get(index);
@@ -155,10 +138,8 @@ public class WordSequencer {
             word = prevWord();
             c = word.charAt(word.length() - 1);
         }
-
         return nextWord();
     }
-
     /**
      * Asettaa indeksin 0 ja palauttaa indeksin kohdalla olevan sanan, joka on tekstin alku.
      * @return      Tekstin ensimmäinen sana.
@@ -167,7 +148,6 @@ public class WordSequencer {
         index = 0;
         return list.get(index);
     }
-
     /**
      * Avaa tiedoston annetussa polussa.
      * @param path  Avattavan tiedoston polku.
@@ -184,33 +164,29 @@ public class WordSequencer {
         }
         return false;
     }
-
     /**
      * Muokkaa HashMappiin tallenetut statistiikat luettavampaan muotoon;
      * Isot alkukirjaimet,
      * alaviivat välilyönneiksi,
      * kaksoispiste ja välilyönti jakajana.
      * Lisää perään muuttujan arvon ja rivinvaihdon, jotta kaikki muuttujat menisivät yhteen String olioon.
-     *
      * @return  String olio, joka kuvaa nykyisten statistiikkaparametrien arvoja.
      */
     public String getStatistics() {
         Map<String, String> statsMap = stats.getStatistics();
         StringBuilder sb = new StringBuilder();
-
         for (String key : statsMap.keySet()) {
             char[] keyChars = key.toCharArray();
-
             for (int i = 0; i < keyChars.length; i++) {
                 if (i == 0) {
-                    sb.append((char)(keyChars[i] - 32));
+                    sb.append((char) (keyChars[i] - 32));
                 } else if (keyChars[i] == '_') {
                     sb.append(' ');
                 } else {
                     sb.append(keyChars[i]);
                 }
             }
-            sb.append(": " + statsMap.get(key) + "\n");
+            sb.append(": ").append(statsMap.get(key)).append("\n");
         }
         return sb.toString();
     }
