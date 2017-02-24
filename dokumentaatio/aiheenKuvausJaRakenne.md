@@ -12,6 +12,24 @@ Ohjelma tulee tarjoamaan:
 * Näppäimet pysäyttämiselle, taakse- ja eteenpäin 
 * Tilastotietoa käyttäjästä, kuten luettujen sanojen määrä, tehtyjen taukojen määrä ja esim. useimmiten luettujen sanojen määrä
 
+### Käyttöohjeet
+Ohjelman käyttö on hyvin yksinkertaista:  
+
+**Tekstirivi:** Näyttää tekstin sanoja järjestyksessä.  
+
+**Napit:**  
+1. **Palaa alkuun:** Palaa tekstin alkuu.  
+2. **Lause taaksepäin:** Siirtyy yhden lauseen taaksepäin.  
+3. **Play:** Aloittaa sanojen näyttämisen järjestyksessä valitulla nopeudella.  
+4. **Lause eteenpäin:** Siirtyy yhden lauseen eteenpäin.  
+  
+**Valikot:**
+* Open File: Avaa ponnahdusikkunan, johon voi kirjoittaa absoluuttisen tai relatiivisen polun, jossa haluttu tiedosto sijaitsee.  
+* Paste text: Avaa ponnahdusikkunan, johon voi liittää suoraan tekstiä.  
+* Statistics: Avaa ponnahdusikkunan, joka näyttää tallenetun statistiikan.  
+  
+**Speed:** Tähän voi kirjoittaa haluamansa lukunopeuden. Nopeus on yksikössä sanoja/minuutti.
+  
 ### Käyttäjät
 
 Käyttäjä (lukija)
@@ -28,7 +46,14 @@ Käyttäjä (lukija)
 ### Luokkakaavio
 ![Luokkakaavio](luokkakaavio.png)
 
+#### Rakennekuvaus
+Main -luokka luo oliot WordSequencer ja UserInterface.
+UserInterface saa WordSequencer-olion käyttöönsä.
+Tietyissä WordSequencerin metodikutsuissa kutsutaan StatisticsRecorder-olion metodeja, jotka tallentavat statistiikkaa.
+Jos WordSequenceria pyydetään avamaan tiedosto, kutsuu se omaa FileOpener-oliota, joka palauttaa WordSequencerille listan sanoja, joita se pystyy käyttämään.
+
 ### Sekvenssikaaviot
-![](Sekvenssikaaviot.png)
+![](nayta_statistiikka.png)
+![](seuraava_lause.png)
 
 ### Mukavia lukuhetkiä!
