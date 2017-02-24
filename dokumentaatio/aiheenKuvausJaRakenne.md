@@ -28,6 +28,7 @@ Käyttäjä (lukija)
 ### Luokkakaavio
 ![Luokkakaavio](luokkakaavio.png)
 
+#### Rakennekuvaus
 Main -luokka luo oliot WordSequencer ja UserInterface.
 UserInterface saa WordSequencer-olion käyttöönsä.
 Tietyissä WordSequencerin metodikutsuissa kutsutaan StatisticsRecorder-olion metodeja, jotka tallentavat statistiikkaa.
