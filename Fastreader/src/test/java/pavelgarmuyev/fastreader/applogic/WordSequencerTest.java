@@ -46,11 +46,6 @@ public class WordSequencerTest {
     }
 
     @Test
-    public void totalWordsTest() {
-        assertEquals(9, ws.totalWords());
-    }
-
-    @Test
     public void setIndexUnderTest() {
         ws.setIndex(Integer.MIN_VALUE);
         assertEquals(0, ws.getIndex());

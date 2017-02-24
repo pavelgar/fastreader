@@ -10,7 +10,6 @@ public class StatisticsRecorderTest {
     private static String propertiesPath = "src/main/resources/test.properties";
     
     public StatisticsRecorderTest() {
-        stats = new StatisticsRecorder(propertiesPath);
     }
     
     @BeforeClass
@@ -25,7 +24,7 @@ public class StatisticsRecorderTest {
 
     @Before
     public void setUp() {
-        
+        stats = new StatisticsRecorder(propertiesPath);
     }
 
     @After
@@ -34,7 +33,8 @@ public class StatisticsRecorderTest {
     }
 
     @Test
-    public void constructorTest() {
-        
+    public void ifFileExistsConstructorTest() {
+        File file = new File(propertiesPath);
+        assertEquals(true, file.exists());
     }
 }

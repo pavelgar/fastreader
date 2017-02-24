@@ -71,13 +71,6 @@ public class WordSequencer {
         }
     }
     /**
-     * Palautaa sanojen maaran nykyisessä WordSequencerissä.
-     * @return      Palauttaa sanojen määrän.
-     */
-    public int totalWords() {
-        return list.size();
-    }
-    /**
      * Asettaa indeksin yhden eteenpäin ja palauttaa uuden indeksin kohdalla olevan sanan.
      * @return      Palauttaa seuraavan sanan.
      */
@@ -109,10 +102,12 @@ public class WordSequencer {
         String word = list.get(index);
         char c = word.charAt(word.length() - 1);
         while (c != '.' && c != '!' && c != '?') {
-            word = nextWord();
+            setIndex(index + 1);
+            word = list.get(index);
             c = word.charAt(word.length() - 1);
         }
-        return nextWord();
+        setIndex(index + 1);
+        return list.get(index);
     }
     /**
      * Laskee indeksiä yhdellä, kunnes edellinen sana loppuu lopetusmerkkiin: . ! ?.
@@ -123,22 +118,26 @@ public class WordSequencer {
         if (index == 0) {
             return list.get(index);
         }
-        String word = prevWord();
+        setIndex(index - 1);
+        String word = list.get(index);
         char c = word.charAt(word.length() - 1);
         boolean userWantsPrevSentence = (c == '.') || (c == '!') || (c == '?');
 
         if (userWantsPrevSentence) {
-            word = prevWord();
+            setIndex(index - 1);
+            word = list.get(index);
             c = word.charAt(word.length() - 1);
         }
         while (c != '.' && c != '!' && c != '?') {
             if (index == 0) {
                 return list.get(index);
             }
-            word = prevWord();
+            setIndex(index - 1);
+            word = list.get(index);
             c = word.charAt(word.length() - 1);
         }
-        return nextWord();
+        setIndex(index + 1);
+        return list.get(index);
     }
     /**
      * Asettaa indeksin 0 ja palauttaa indeksin kohdalla olevan sanan, joka on tekstin alku.

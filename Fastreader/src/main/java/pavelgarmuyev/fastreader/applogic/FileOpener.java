@@ -7,11 +7,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class FileOpener {
-    /**
-     * Luo uuden FileOpener olion.
-     */
-    public FileOpener() {
-    }
+    
     /**
      * Avaa tiedoston ja tallentaa jokaisen sanan listaan.
      *
