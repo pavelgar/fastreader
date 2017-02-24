@@ -17,13 +17,13 @@ Ohjelman käyttö on hyvin yksinkertaista:
 
 **Tekstirivi:** Näyttää tekstin sanoja järjestyksessä.  
 
-**Napit:**
+**Napit:**  
 1. Palaa alkuun: Palaa tekstin alkuu.
 2. Lause taaksepäin: Siirtyy yhden lauseen taaksepäin.
 3. Play: Aloittaa sanojen näyttämisen järjestyksessä valitulla nopeudella.
 4. Lause eteenpäin: Siirtyy yhden lauseen eteenpäin.
   
-**Valikot:**
+**Valikot:**  
 * Open File: Avaa ponnahdusikkunan, johon voi kirjoittaa absoluuttisen tai relatiivisen polun, jossa haluttu tiedosto sijaitsee.
 * Paste text: Avaa ponnahdusikkunan, johon voi liittää suoraan tekstiä.
 * Statistics: Avaa ponnahdusikkunan, joka näyttää tallenetun statistiikan.
