@@ -28,6 +28,11 @@ Käyttäjä (lukija)
 ### Luokkakaavio
 ![Luokkakaavio](luokkakaavio.png)
 
+Main -luokka luo oliot WordSequencer ja UserInterface.
+UserInterface saa WordSequencer-olion käyttöönsä.
+Tietyissä WordSequencerin metodikutsuissa kutsutaan StatisticsRecorder-olion metodeja, jotka tallentavat statistiikkaa.
+Jos WordSequenceria pyydetään avamaan tiedosto, kutsuu se omaa FileOpener-oliota, joka palauttaa WordSequencerille listan sanoja, joita se pystyy käyttämään.
+
 ### Sekvenssikaaviot
 ![](nayta_statistiikka.png)
 ![](seuraava_lause.png)
