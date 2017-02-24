@@ -14,7 +14,9 @@ Ohjelma tulee tarjoamaan:
 
 ### Käyttöohjeet
 Ohjelman käyttö on hyvin yksinkertaista:  
-**Tekstirivi: ** Näyttää tekstin sanoja järjestyksessä.  
+
+**Tekstirivi:** Näyttää tekstin sanoja järjestyksessä.  
+
 **Napit:**
 1. Palaa alkuun: Palaa tekstin alkuu.
 2. Lause taaksepäin: Siirtyy yhden lauseen taaksepäin.
