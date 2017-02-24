@@ -9,8 +9,7 @@ import javax.swing.SwingUtilities;
 public class Main {
 
     public static void main(String[] args) {
-        WordSequencer ws = new WordSequencer("src/main/resources/tutorial.txt",
-                "src/main/resources/config.properties");
+        WordSequencer ws = new WordSequencer("config.properties");
         UserInterface ui = new UserInterface(ws);
         SwingUtilities.invokeLater(ui);
 

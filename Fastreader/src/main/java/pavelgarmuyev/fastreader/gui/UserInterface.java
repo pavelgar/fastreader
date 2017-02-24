@@ -4,8 +4,14 @@ import pavelgarmuyev.fastreader.applogic.WordSequencer;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 
 public class UserInterface implements Runnable {
 
@@ -104,29 +110,54 @@ public class UserInterface implements Runnable {
         controlsPanel.setBackground(Color.WHITE);
 
         JButton[] buttons = new JButton[4];
-
-        JButton rewindButton = new JButton(new ImageIcon("src/main/resources/rewind_button.png"));
+        
+        InputStream is = getClass().getClassLoader().getResourceAsStream("images/rewind_button.png");
+        BufferedImage bf = null;
+        try {
+            bf = ImageIO.read(is);
+        } catch (IOException ex) {
+            System.out.println("Couldn't load rewind_button.png");
+        }
+        JButton rewindButton = new JButton(new ImageIcon(bf));
         rewindButton.addActionListener(e -> {
             wordSequencer.setRunning(false);
             bigWord.setText(wordSequencer.toBeginningOfText());
         });
         buttons[0] = rewindButton;
-
-        JButton prevButton = new JButton(new ImageIcon("src/main/resources/prev_sentence_button.png"));
+        
+        is = getClass().getClassLoader().getResourceAsStream("images/prev_sentence_button.png");
+        try {
+            bf = ImageIO.read(is);
+        } catch (IOException ex) {
+            System.out.println("Couldn't load prev_sentence_button.png");
+        }
+        JButton prevButton = new JButton(new ImageIcon(bf));
         prevButton.addActionListener(e -> {
             wordSequencer.setRunning(false);
             bigWord.setText(wordSequencer.currentSentenceBeginning());
         });
         buttons[1] = prevButton;
 
-        JButton playButton = new JButton(new ImageIcon("src/main/resources/play_button.png"));
+        is = getClass().getClassLoader().getResourceAsStream("images/play_button.png");
+        try {
+            bf = ImageIO.read(is);
+        } catch (IOException ex) {
+            System.out.println("Couldn't load play_button.png");
+        }
+        JButton playButton = new JButton(new ImageIcon(bf));
         playButton.addActionListener(e -> {
             if (wordSequencer.isRunning()) wordSequencer.incrementPauses();
             wordSequencer.setRunning(!wordSequencer.isRunning());
         });
         buttons[2] = playButton;
 
-        JButton nextButton = new JButton(new ImageIcon("src/main/resources/next_sentence_button.png"));
+        is = getClass().getClassLoader().getResourceAsStream("images/next_sentence_button.png");
+        try {
+            bf = ImageIO.read(is);
+        } catch (IOException ex) {
+            System.out.println("Couldn't load next_sentence_button.png");
+        }
+        JButton nextButton = new JButton(new ImageIcon(bf));
         nextButton.addActionListener(e -> {
             wordSequencer.setRunning(false);
             bigWord.setText(wordSequencer.nextSentenceBeginning());

@@ -92,7 +92,7 @@ public class StatisticsRecorder {
             properties.load(input);
 
         } catch (IOException e) {
-            System.out.println("Couldn't load properties ");
+            System.out.println("Couldn't load properties");
         } finally {
             if (input != null) {
                 try {

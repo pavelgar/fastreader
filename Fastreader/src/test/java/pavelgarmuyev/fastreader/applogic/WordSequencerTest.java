@@ -31,7 +31,8 @@ public class WordSequencerTest {
 
     @Before
     public void setUp() {
-        ws = new WordSequencer(testFilePath, propertiesPath);
+        ws = new WordSequencer(propertiesPath);
+        ws.openPath(testFilePath);
     }
 
     @After
@@ -197,4 +198,19 @@ public class WordSequencerTest {
     public void openPathEmptyTest() {
         assertEquals(false, ws.openPath("src/main/resources/emptyTest.txt"));
     }
+    
+    @Test
+    public void getStatisticsTest() {
+        File file = new File(propertiesPath);
+        file.delete();
+        ws = new WordSequencer(propertiesPath);
+        String stats = ws.getStatistics();
+        boolean contains = false;
+        
+        if (stats.contains("Words read: ") && stats.contains("Pauses made: ")) {
+            contains = true;
+        }
+        assertEquals(true, contains);
+    }
+    
 }

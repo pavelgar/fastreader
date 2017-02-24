@@ -1,6 +1,7 @@
 
 package pavelgarmuyev.fastreader.applogic;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -13,13 +14,19 @@ public class WordSequencer {
 
     /**
      * Luo uuden WordSequencer -olion, joka navigoi tiedoston sanoissa ja lauseissa eteen- ja taaksepäin.
-     * @param textPath      Polku tiedostolle, joka avataan luettavaksi.
      * @param statisticsPath    Polku tiedostolle, johon tallenetaan statistiikkaa.
      */
-    public WordSequencer(String textPath, String statisticsPath) {
+    public WordSequencer(String statisticsPath) {
         stats = new StatisticsRecorder(statisticsPath);
         fileOpener = new FileOpener();
-        list = fileOpener.openFile(textPath);
+        list = Arrays.asList("Fastreader", "on", "ohjelma,", "joka", "auttaa", "sinua", "lukemaan", "nopeammin.", 
+                "Kohdista", "katseesi", "rivin", "keskelle.", 
+                "Mitä", "rennompi", "olet,", "sitä", "paremmin", "pystyt", "lukemaan.", 
+                "Ruudun", "alalaidassa", "voit", "vaihtaa", "lukunopeutta.", 
+                "Yläpalkissa", "olevasta", "Open", "File", "napista", "voit", "avata", "omia", "tiedostoja.", 
+                "Statistics", "nappi", "avaa", "ikkunan,", "jossa", "näet", "kiinnostavaa", "tietoa", "lukutottumuksistasi.", 
+                "Tiedot", "tallenetaan,", "jotta", "voit", "nähdä", "saavutuksesi", "ohjelman", "parissa.", 
+                "Mukavia", "lukuhetkiä!");
         index = 0;
         speed = stats.getPreferredSpeed();
         running = false;

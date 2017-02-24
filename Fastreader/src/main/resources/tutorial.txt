@@ -1,8 +1,0 @@
-﻿Fastreader on ohjelma, joka auttaa sinua lukemaan nopeammin.
-Kohdista katseesi rivin keskelle ja rentoudu.
-Mitä rennompi olet, sitä paremmin pystyt lukemaan.
-Ruudun alalaidassa voit vaihtaa lukunopeutta.
-Yläpalkissa olevasta Open File napista voit avata omia tiedostoja.
-Statistics nappi avaa ikkunan, jossa näet kiinnostavaa tietoa lukutottumuksistasi.
-Tiedot tallenetaan, jotta näyt kehityksesi ohjelman parissa.
-Mukavia lukuhetkiä!
