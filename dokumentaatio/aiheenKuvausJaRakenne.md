@@ -12,7 +12,7 @@ Ohjelma tulee tarjoamaan:
 * Näppäimet pysäyttämiselle, taakse- ja eteenpäin 
 * Tilastotietoa käyttäjästä, kuten luettujen sanojen määrä, tehtyjen taukojen määrä ja esim. useimmiten luettujen sanojen määrä
 
-#### Käyttöohjeet
+### Käyttöohjeet
 Ohjelman käyttö on hyvin yksinkertaista:
 **Tekstirivi: ** Näyttää tekstin sanoja järjestyksessä.
 **Napit:**
