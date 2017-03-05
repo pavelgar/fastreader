@@ -11,3 +11,4 @@
 10.02.2017 |   3h   | Sovelluslogiikan ja testien rewrite ja Javadoc
 17.02.2017 |   4h   | Testejä ja uusia soelluslogiikan luokkia
 21.02.2017 |   8h   | Testejä ja sovelluslogiikan toteutusta
+04.03.2017 |   3h   | Testejä
