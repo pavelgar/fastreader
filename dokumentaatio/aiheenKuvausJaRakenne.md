@@ -39,7 +39,7 @@ Käyttäjä (lukija)
 * Tekstin tai tiedoston syöttäminen
 * Nopeuden valitseminen
 * Tekstiluvun pysäyttäminen
-* Sanoissa eteen/taakse siirtyminen
+* Lauseissa eteen/taakse siirtyminen
   * Jos tekstinluku on käynnissa, se pysäytetään
 * Tilastojen tarkastelu
 
