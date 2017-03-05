@@ -5,9 +5,11 @@ import org.junit.*;
 import static org.junit.Assert.*;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 
 public class WordSequencerTest {
 
@@ -139,7 +141,14 @@ public class WordSequencerTest {
     public void nextSentenceBeginningTest() {
         assertEquals("Is", ws.nextSentenceBeginning());
     }
-
+    
+    @Test
+    public void nextSentenceBeginningWhenNoEndTest() {
+        ws.setList(Arrays.asList("this", "has", "no", "end", "char"));
+        assertEquals("char", ws.nextSentenceBeginning());
+        assertEquals(4, ws.getIndex());
+    }
+    
     @Test
     public void currentSentenceBeginningTest() {
         ws.setIndex(6);
@@ -151,18 +160,19 @@ public class WordSequencerTest {
         ws.currentSentenceBeginning();
         assertEquals("This?", ws.currentSentenceBeginning());
     }
+    
+    @Test
+    public void currentSentenceBeginningWhenReachedZeroTest() {
+        ws.setList(Arrays.asList("This", "is", "a", "single", "sentence."));
+        ws.currentSentenceBeginning();
+        assertEquals("This", ws.currentSentenceBeginning());
+        assertEquals(0, ws.getIndex());
+    }
 
     @Test
     public void currentSentenceBeginningWhenOnTheRightWordTest() {
         ws.setIndex(1);
         assertEquals("Is", ws.currentSentenceBeginning());
-    }
-
-    @Test
-    public void currentSentenceBeginningWhenReachedZeroTest() {
-        ws.setList(Arrays.asList("This", "is", "a", "test!"));
-        ws.setIndex(3);
-        assertEquals("This", ws.currentSentenceBeginning());
     }
 
     @Test
@@ -213,4 +223,59 @@ public class WordSequencerTest {
         assertEquals(true, contains);
     }
     
+    @Test
+    public void incrementPausesUpdatesStatistics() throws FileNotFoundException {
+        File file = new File(propertiesPath);
+        Scanner scanner = new Scanner(file);
+        int value = -1;
+        String pausesMade = "stat_pauses_made=";
+        while (scanner.hasNextLine()) {
+            String nextLine = scanner.nextLine();
+            
+            if (nextLine.startsWith(pausesMade)) {
+                value = Integer.parseInt(nextLine.substring(pausesMade.length()));
+            }
+        }
+        ws.incrementPauses();
+        scanner = new Scanner(file);
+        int newValue = -1;
+        while (scanner.hasNextLine()) {
+            String nextLine = scanner.nextLine();
+            
+            if (nextLine.startsWith(pausesMade)) {
+                newValue = Integer.parseInt(nextLine.substring(pausesMade.length()));
+            }
+        }
+        scanner.close();
+        assertEquals(value + 1, newValue);
+    }
+    
+    @Test
+    public void setSpeedUpdatesStatistics() throws FileNotFoundException {
+        File file = new File(propertiesPath);
+        Scanner scanner = new Scanner(file);
+        int value = -1;
+        String wordsRead = "stat_words_read=";
+        while (scanner.hasNextLine()) {
+            String nextLine = scanner.nextLine();
+            
+            if (nextLine.startsWith(wordsRead)) {
+                value = Integer.parseInt(nextLine.substring(wordsRead.length()));
+            }
+        }
+        ws.nextWord();
+        ws.nextWord();
+        ws.nextWord();
+        scanner = new Scanner(file);
+        int newValue = -1;
+        while (scanner.hasNextLine()) {
+            String nextLine = scanner.nextLine();
+            
+            if (nextLine.startsWith(wordsRead)) {
+                newValue = Integer.parseInt(nextLine.substring(wordsRead.length()));
+            }
+        }
+        scanner.close();
+        assertEquals(value + 3, newValue);
+    }
 }

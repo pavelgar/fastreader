@@ -27,6 +27,8 @@ public class StatisticsRecorderTest {
 
     @AfterClass
     public static void tearDownClass() {
+        File file = new File(propertiesPath);
+        file.delete();
     }
 
     @Before
@@ -137,7 +139,7 @@ public class StatisticsRecorderTest {
         scanner.close();
         assertEquals(true, tests.isEmpty());
     }
-    
+    /*
     @Test
     public void constructorTest3() throws IOException {
         String first = "preferred_speed=1000";
@@ -180,6 +182,11 @@ public class StatisticsRecorderTest {
         }
         scanner.close();
         assertEquals(true, tests.isEmpty());
+    } */
+    
+    @Test
+    public void createDefaultsStoresToProperties() {
+        
     }
     
     @Test
@@ -204,19 +211,22 @@ public class StatisticsRecorderTest {
         scanner.close();
         assertEquals(1000000, value);
     }
-    
+    /*
     public void incrementWordsReadTest() {
         Map<String, String> statistics = stats.getStatistics();
+        int value = Integer.parseInt(statistics.get("words_read"));
         stats.incrementWordsRead();
-        assertEquals(1, Integer.parseInt(statistics.get("words_read")));
+        statistics = stats.getStatistics();
+        assertEquals(value + 1, Integer.parseInt(statistics.get("words_read")));
     }
     
     public void incrementPausesMadeTest() {
         Map<String, String> map = stats.getStatistics();
         int value = Integer.parseInt(map.get("pauses_made"));
         stats.incrementPausesMade();
+        stats.incrementPausesMade();
+        stats.incrementPausesMade();
         map = stats.getStatistics();
-        int newValue = Integer.parseInt(map.get("pauses_made"));
-        assertEquals(value + 1, newValue);
-    }
+        assertEquals(value + 3, Integer.parseInt(map.get("pauses_made")));
+    } */
 }

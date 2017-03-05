@@ -1,4 +1,3 @@
-
 package pavelgarmuyev.fastreader.applogic;
 
 import java.util.Arrays;
@@ -31,7 +30,6 @@ public class WordSequencer {
         speed = stats.getPreferredSpeed();
         running = false;
     }
-    
     public void setList(List<String> list) {
         this.list = list;
     }
@@ -52,7 +50,7 @@ public class WordSequencer {
     }
     /**
      * Nopeuden asettamisen lisäksi tämä metodi kutsuu statisiikkaluokan metodia <code>setPreferredSpeed()</code>, joka tallentaa valitun nopeuden.
-     * @param speed 
+     * @param speed     Asetettava nopeus.
      */
     public void setSpeed(int speed) {
         this.speed = speed;
@@ -68,9 +66,9 @@ public class WordSequencer {
      * @param index     Asetettava indeksi.
      */
     public void setIndex(int index) {
-        if (index <= 0) {
+        if (index < 0) {
             this.index = 0;
-        } else if (index >= list.size() - 1) {
+        } else if (index > list.size() - 1) {
             this.index = list.size() - 1;
             setRunning(false);
         } else {
@@ -109,6 +107,9 @@ public class WordSequencer {
         String word = list.get(index);
         char c = word.charAt(word.length() - 1);
         while (c != '.' && c != '!' && c != '?') {
+            if (index == list.size() - 1) {
+                return list.get(index);
+            }
             setIndex(index + 1);
             word = list.get(index);
             c = word.charAt(word.length() - 1);
